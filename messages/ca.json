@@ -103,7 +103,7 @@
     "title": "La meva cartera",
     "totalValue": "Valor total",
     "totalCost": "Cost total",
-    "totalReturn": "Rendiment total",
+    "totalReturn": "Retorn total",
     "positions": "Posicions",
     "ticker": "Ticker",
     "name": "Empresa",
@@ -113,19 +113,15 @@
     "value": "Valor",
     "return": "Rendiment",
     "returnPct": "% Rendiment",
-    "noPositions": "No tens posicions a la cartera",
+    "noPositions": "Encara no tens cap posició a la cartera.",
     "addPosition": "Afegir posició",
     "detail": {
-      "back": "Tornar a la cartera",
-      "overview": "Visió general",
-      "history": "Historial",
-      "performance": "Rendiment",
-      "about": "Sobre l'empresa"
+      "back": "Tornar a la cartera"
     }
   },
   "news": {
     "title": "Notícies financeres",
-    "subtitle": "Les últimes notícies del mercat i anàlisi financera",
+    "subtitle": "Les últimes notícies del mercat, curades per al teu perfil",
     "readMore": "Llegir més",
     "relatedTickers": "Tickers relacionats",
     "publishedAt": "Publicat el",
@@ -133,7 +129,8 @@
     "filter": "Filtrar per ticker",
     "allNews": "Totes les notícies",
     "paywallTitle": "Contingut premium",
-    "paywallMessage": "Subscriu-te per accedir a totes les notícies i anàlisi financera."
+    "paywallMessage": "Subscriu-te per accedir a totes les notícies i anàlisi financera.",
+    "search": "Cercar notícies..."
   },
   "mentoring": {
     "title": "Sessions de mentoria",
@@ -174,7 +171,12 @@
       "period": "/mes",
       "description": "Per a inversors que volen començar",
       "cta": "Comença gratis",
-      "features": ["Informe d'orientació gratuït", "Accés bàsic a notícies", "Seguiment de fins a 3 posicions", "Tauler bàsic"]
+      "features": [
+        "Informe d'orientació gratuït",
+        "Accés bàsic a notícies",
+        "Seguiment de fins a 3 posicions",
+        "Tauler bàsic"
+      ]
     },
     "pro": {
       "name": "Pro",
@@ -184,7 +186,14 @@
       "description": "Per a inversors seriosos",
       "cta": "Subscriure's ara",
       "popular": "Més popular",
-      "features": ["Tot del pla Gratuït", "Cartera il·limitada", "Notícies i anàlisi completes", "1 sessió de mentoria al mes", "Alertes de mercat", "Exportació de dades"]
+      "features": [
+        "Tot del pla Gratuït",
+        "Cartera il·limitada",
+        "Notícies i anàlisi completes",
+        "1 sessió de mentoria al mes",
+        "Alertes de mercat",
+        "Exportació de dades"
+      ]
     },
     "premium": {
       "name": "Premium",
@@ -193,7 +202,14 @@
       "period": "/mes",
       "description": "Per a inversors professionals",
       "cta": "Subscriure's ara",
-      "features": ["Tot del pla Pro", "Sessions de mentoria il·limitades", "Anàlisi personalitzada", "Accés prioritari", "Suport dedicat", "API d'accés"]
+      "features": [
+        "Tot del pla Pro",
+        "Sessions de mentoria il·limitades",
+        "Anàlisi personalitzada",
+        "Accés prioritari",
+        "Suport dedicat",
+        "API d'accés"
+      ]
     },
     "faq": {
       "title": "Preguntes freqüents",
@@ -304,5 +320,21 @@
     "benefit2": "Identificació d'oportunitats de millora",
     "benefit3": "Recomanacions personalitzades",
     "benefit4": "Sense compromisos"
+  },
+  "subscription": {
+    "title": "La meva subscripció",
+    "status": "Estat",
+    "active": "Activa",
+    "inactive": "Inactiva",
+    "cancelled": "Cancel·lada",
+    "plan": "Pla",
+    "renewalDate": "Propera renovació",
+    "managePayment": "Gestionar pagament",
+    "cancelSubscription": "Cancel·lar subscripció",
+    "mentoringHistory": "Historial de mentories",
+    "noMentorings": "Encara no has contractat cap mentoria.",
+    "bookFirstMentoring": "Reservar primera mentoria",
+    "stripePortal": "Gestionar via Stripe",
+    "activeSubscriptions": "Subscripcions actives"
   }
 }

@@ -174,7 +174,12 @@
       "period": "/mes",
       "description": "Para inversores que quieren empezar",
       "cta": "Empieza gratis",
-      "features": ["Informe de orientación gratuito", "Acceso básico a noticias", "Seguimiento de hasta 3 posiciones", "Panel básico"]
+      "features": [
+        "Informe de orientación gratuito",
+        "Acceso básico a noticias",
+        "Seguimiento de hasta 3 posiciones",
+        "Panel básico"
+      ]
     },
     "pro": {
       "name": "Pro",
@@ -184,7 +189,14 @@
       "description": "Para inversores serios",
       "cta": "Suscribirse ahora",
       "popular": "Más popular",
-      "features": ["Todo del plan Gratuito", "Cartera ilimitada", "Noticias y análisis completos", "1 sesión de mentoría al mes", "Alertas de mercado", "Exportación de datos"]
+      "features": [
+        "Todo del plan Gratuito",
+        "Cartera ilimitada",
+        "Noticias y análisis completos",
+        "1 sesión de mentoría al mes",
+        "Alertas de mercado",
+        "Exportación de datos"
+      ]
     },
     "premium": {
       "name": "Premium",
@@ -193,7 +205,14 @@
       "period": "/mes",
       "description": "Para inversores profesionales",
       "cta": "Suscribirse ahora",
-      "features": ["Todo del plan Pro", "Sesiones de mentoría ilimitadas", "Análisis personalizado", "Acceso prioritario", "Soporte dedicado", "API de acceso"]
+      "features": [
+        "Todo del plan Pro",
+        "Sesiones de mentoría ilimitadas",
+        "Análisis personalizado",
+        "Acceso prioritario",
+        "Soporte dedicado",
+        "API de acceso"
+      ]
     },
     "faq": {
       "title": "Preguntas frecuentes",
@@ -304,5 +323,21 @@
     "benefit2": "Identificación de oportunidades de mejora",
     "benefit3": "Recomendaciones personalizadas",
     "benefit4": "Sin compromisos"
+  },
+  "subscription": {
+    "title": "Mi suscripción",
+    "status": "Estado",
+    "active": "Activa",
+    "inactive": "Inactiva",
+    "cancelled": "Cancelada",
+    "plan": "Plan",
+    "renewalDate": "Próxima renovación",
+    "managePayment": "Gestionar pago",
+    "cancelSubscription": "Cancelar suscripción",
+    "mentoringHistory": "Historial de mentorías",
+    "noMentorings": "Todavía no has contratado ninguna mentoría.",
+    "bookFirstMentoring": "Reservar primera mentoría",
+    "stripePortal": "Gestionar via Stripe",
+    "activeSubscriptions": "Suscripciones activas"
   }
 }
