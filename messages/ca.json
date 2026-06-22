@@ -1,0 +1,308 @@
+{
+  "nav": {
+    "dashboard": "Tauler",
+    "portfolio": "Cartera",
+    "news": "Notícies",
+    "mentoring": "Mentories",
+    "subscription": "Subscripció",
+    "profile": "Perfil",
+    "admin": "Administració",
+    "logout": "Tancar sessió",
+    "login": "Iniciar sessió",
+    "register": "Registrar-se",
+    "home": "Inici"
+  },
+  "landing": {
+    "hero": {
+      "badge": "Plataforma professional d'inversió",
+      "title": "Inverteix amb",
+      "titleHighlight": "precisió i confiança",
+      "subtitle": "Factor OTC et proporciona anàlisi professional, seguiment de cartera en temps real i assessorament expert per prendre les millors decisions d'inversió.",
+      "cta": "Comença gratis",
+      "ctaSecondary": "Veure preus",
+      "scrollDown": "Descobreix més"
+    },
+    "features": {
+      "title": "Tot el que necessites per invertir millor",
+      "subtitle": "Des de l'anàlisi fins a l'execució, Factor OTC t'acompanya en cada pas del teu viatge inversor.",
+      "portfolio": {
+        "title": "Seguiment de Cartera",
+        "description": "Visualitza el rendiment de les teves inversions en temps real amb gràfics interactius i mètriques detallades."
+      },
+      "news": {
+        "title": "Notícies Financeres",
+        "description": "Accedeix a notícies i anàlisi financera filtrada per les teves posicions i sectors d'interès."
+      },
+      "mentoring": {
+        "title": "Mentoria Personalitzada",
+        "description": "Sessions individuals amb experts financers per millorar la teva estratègia d'inversió."
+      },
+      "security": {
+        "title": "Seguretat Avançada",
+        "description": "Les teves dades i actius protegits amb la màxima seguretat i privadesa."
+      }
+    },
+    "stats": {
+      "users": "Usuaris actius",
+      "volume": "Volum gestionat",
+      "satisfaction": "Satisfacció",
+      "sessions": "Sessions de mentoria"
+    },
+    "cta": {
+      "title": "Llest per invertir millor?",
+      "subtitle": "Uneix-te a Factor OTC i accedeix a les eines que necessites per prendre decisions informades.",
+      "button": "Comença avui"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Benvingut de nou",
+      "subtitle": "Inicia sessió al teu compte de Factor OTC",
+      "email": "Correu electrònic",
+      "password": "Contrasenya",
+      "submit": "Iniciar sessió",
+      "forgotPassword": "Has oblidat la contrasenya?",
+      "noAccount": "No tens compte?",
+      "register": "Registra't",
+      "error": "Credencials incorrectes. Torna-ho a intentar.",
+      "loading": "Iniciant sessió..."
+    },
+    "register": {
+      "title": "Crear compte",
+      "subtitle": "Uneix-te a Factor OTC",
+      "name": "Nom complet",
+      "email": "Correu electrònic",
+      "phone": "Telèfon (opcional)",
+      "password": "Contrasenya",
+      "confirmPassword": "Confirma la contrasenya",
+      "language": "Idioma preferit",
+      "submit": "Crear compte",
+      "hasAccount": "Ja tens compte?",
+      "login": "Inicia sessió",
+      "error": "Error en crear el compte. Torna-ho a intentar.",
+      "loading": "Creant compte...",
+      "passwordMismatch": "Les contrasenyes no coincideixen",
+      "success": "Compte creat correctament"
+    }
+  },
+  "dashboard": {
+    "title": "Tauler",
+    "welcome": "Benvingut",
+    "portfolioValue": "Valor de la cartera",
+    "todayChange": "Canvi avui",
+    "totalReturn": "Rendiment total",
+    "positions": "Posicions",
+    "performance": "Rendiment dels últims 30 dies",
+    "topPositions": "Principals posicions",
+    "recentNews": "Notícies recents",
+    "viewAll": "Veure tot",
+    "noData": "Sense dades disponibles",
+    "upgradeMessage": "Actualitza la teva subscripció per veure totes les funcionalitats"
+  },
+  "portfolio": {
+    "title": "La meva cartera",
+    "totalValue": "Valor total",
+    "totalCost": "Cost total",
+    "totalReturn": "Rendiment total",
+    "positions": "Posicions",
+    "ticker": "Ticker",
+    "name": "Empresa",
+    "quantity": "Quantitat",
+    "avgCost": "Cost mitjà",
+    "currentPrice": "Preu actual",
+    "value": "Valor",
+    "return": "Rendiment",
+    "returnPct": "% Rendiment",
+    "noPositions": "No tens posicions a la cartera",
+    "addPosition": "Afegir posició",
+    "detail": {
+      "back": "Tornar a la cartera",
+      "overview": "Visió general",
+      "history": "Historial",
+      "performance": "Rendiment",
+      "about": "Sobre l'empresa"
+    }
+  },
+  "news": {
+    "title": "Notícies financeres",
+    "subtitle": "Les últimes notícies del mercat i anàlisi financera",
+    "readMore": "Llegir més",
+    "relatedTickers": "Tickers relacionats",
+    "publishedAt": "Publicat el",
+    "noNews": "No hi ha notícies disponibles",
+    "filter": "Filtrar per ticker",
+    "allNews": "Totes les notícies",
+    "paywallTitle": "Contingut premium",
+    "paywallMessage": "Subscriu-te per accedir a totes les notícies i anàlisi financera."
+  },
+  "mentoring": {
+    "title": "Sessions de mentoria",
+    "subtitle": "Sessió d'orientació i sessions addicionals de mentoria",
+    "freeReport": {
+      "title": "Informe d'orientació gratuït",
+      "description": "Una sessió inicial gratuïta per entendre la teva situació financera i establir objectius clars.",
+      "cta": "Reservar sessió gratuïta",
+      "included": "Inclòs a totes les subscripcions"
+    },
+    "extraMentoring": {
+      "title": "Mentoria addicional",
+      "description": "Sessions individuals aprofundides per analitzar la teva cartera i optimitzar la teva estratègia.",
+      "cta": "Reservar sessió",
+      "price": "€150 / sessió"
+    },
+    "sessions": "Les meves sessions",
+    "noSessions": "No tens sessions programades",
+    "status": {
+      "scheduled": "Programada",
+      "completed": "Completada",
+      "cancelled": "Cancel·lada"
+    },
+    "type": {
+      "free_report": "Informe gratuït",
+      "extra_mentoring": "Mentoria addicional"
+    }
+  },
+  "pricing": {
+    "title": "Preus simples i transparents",
+    "subtitle": "Tria el pla que millor s'adapti a les teves necessitats d'inversió.",
+    "monthly": "Mensual",
+    "annual": "Anual",
+    "save": "Estalvia 20%",
+    "free": {
+      "name": "Gratuït",
+      "price": "0€",
+      "period": "/mes",
+      "description": "Per a inversors que volen començar",
+      "cta": "Comença gratis",
+      "features": ["Informe d'orientació gratuït", "Accés bàsic a notícies", "Seguiment de fins a 3 posicions", "Tauler bàsic"]
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "49€",
+      "priceAnnual": "39€",
+      "period": "/mes",
+      "description": "Per a inversors seriosos",
+      "cta": "Subscriure's ara",
+      "popular": "Més popular",
+      "features": ["Tot del pla Gratuït", "Cartera il·limitada", "Notícies i anàlisi completes", "1 sessió de mentoria al mes", "Alertes de mercat", "Exportació de dades"]
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "99€",
+      "priceAnnual": "79€",
+      "period": "/mes",
+      "description": "Per a inversors professionals",
+      "cta": "Subscriure's ara",
+      "features": ["Tot del pla Pro", "Sessions de mentoria il·limitades", "Anàlisi personalitzada", "Accés prioritari", "Suport dedicat", "API d'accés"]
+    },
+    "faq": {
+      "title": "Preguntes freqüents",
+      "q1": "Puc cancel·lar en qualsevol moment?",
+      "a1": "Sí, pots cancel·lar la teva subscripció en qualsevol moment sense penalitzacions.",
+      "q2": "Hi ha un període de prova?",
+      "a2": "Oferim un pla gratuït permanent i una sessió d'orientació gratuïta per a tots els usuaris.",
+      "q3": "Com funcionen les sessions de mentoria?",
+      "a3": "Les sessions es programen a través de Calendly i es realitzen per videoconferència."
+    }
+  },
+  "profile": {
+    "title": "El meu perfil",
+    "personalInfo": "Informació personal",
+    "name": "Nom",
+    "email": "Correu electrònic",
+    "phone": "Telèfon",
+    "language": "Idioma",
+    "save": "Desar canvis",
+    "subscription": "La meva subscripció",
+    "plan": "Pla actual",
+    "status": "Estat",
+    "renewalDate": "Data de renovació",
+    "cancelSubscription": "Cancel·lar subscripció",
+    "security": "Seguretat",
+    "changePassword": "Canviar contrasenya",
+    "currentPassword": "Contrasenya actual",
+    "newPassword": "Nova contrasenya",
+    "confirmPassword": "Confirmar contrasenya",
+    "savePassword": "Desar contrasenya",
+    "saved": "Canvis desats correctament"
+  },
+  "admin": {
+    "title": "Administració",
+    "users": "Usuaris",
+    "portfolios": "Carteres",
+    "news": "Notícies",
+    "totalUsers": "Total usuaris",
+    "activeSubscriptions": "Subscripcions actives",
+    "totalRevenue": "Ingressos totals",
+    "pendingArticles": "Articles pendents",
+    "userList": "Llista d'usuaris",
+    "portfolioList": "Llista de carteres",
+    "newsList": "Llista de notícies",
+    "publish": "Publicar",
+    "unpublish": "Despublicar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear nou article",
+    "articleTitle": "Títol",
+    "articleSummary": "Resum",
+    "articleContent": "Contingut",
+    "relatedTickers": "Tickers relacionats",
+    "status": "Estat"
+  },
+  "legal": {
+    "disclaimer": "PENDENT DE REVISIO LEGAL PER ADVOCAT ESPECIALITZAT - NO UTILITZAR EN PRODUCCIO SENSE VALIDACIO PROFESSIONAL",
+    "avisLegal": {
+      "title": "Avís Legal",
+      "content": "Aquest lloc web és propietat de Factor OTC. La informació proporcionada en aquest lloc web té caràcter informatiu i no constitueix assessorament financer, fiscal o jurídic. Factor OTC no es fa responsable de les decisions d'inversió preses basant-se en la informació proporcionada en aquest lloc web. Els mercats financers comporten riscos i els rendiments passats no garanteixen resultats futurs."
+    },
+    "termes": {
+      "title": "Termes i Condicions",
+      "content": "En accedir i utilitzar la plataforma Factor OTC, acceptes els presents termes i condicions. L'ús de la plataforma implica l'acceptació de la nostra política de privadesa i avís legal. Factor OTC es reserva el dret de modificar aquests termes en qualsevol moment."
+    },
+    "privacitat": {
+      "title": "Política de Privadesa",
+      "content": "Factor OTC recull i processa les teves dades personals per proporcionar els serveis de la plataforma. Les teves dades no es compartiran amb tercers sense el teu consentiment explícit, excepte quan sigui requerit per llei. Tens dret a accedir, rectificar i eliminar les teves dades personals."
+    }
+  },
+  "common": {
+    "loading": "Carregant...",
+    "error": "S'ha produït un error",
+    "retry": "Torna-ho a intentar",
+    "cancel": "Cancel·lar",
+    "confirm": "Confirmar",
+    "save": "Desar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Tancar",
+    "back": "Tornar",
+    "next": "Següent",
+    "previous": "Anterior",
+    "search": "Cercar",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "currency": "€",
+    "yes": "Sí",
+    "no": "No",
+    "active": "Actiu",
+    "inactive": "Inactiu",
+    "upgrade": "Actualitzar pla",
+    "learnMore": "Saber-ne més"
+  },
+  "freeReport": {
+    "title": "Sol·licita el teu informe gratuït",
+    "subtitle": "Obtén una anàlisi personalitzada de la teva situació financera sense cap cost.",
+    "howItWorks": "Com funciona",
+    "step1": "Reserva la teva cita",
+    "step1Desc": "Tria el dia i l'hora que millor t'encaixi al nostre calendari.",
+    "step2": "Prepara't",
+    "step2Desc": "Reuneix informació sobre les teves inversions actuals i objectius.",
+    "step3": "Sessió d'anàlisi",
+    "step3Desc": "Un expert revistarà la teva situació i t'oferirà orientació personalitzada.",
+    "cta": "Reservar cita gratuïta",
+    "benefits": "Què inclou",
+    "benefit1": "Anàlisi de la teva cartera actual",
+    "benefit2": "Identificació d'oportunitats de millora",
+    "benefit3": "Recomanacions personalitzades",
+    "benefit4": "Sense compromisos"
+  }
+}

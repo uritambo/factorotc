@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  INACTIVE
+  CANCELLED
+}
+
+enum NewsStatus {
+  PENDING
+  PUBLISHED
+}
+
+enum SessionStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+
+enum SessionType {
+  FREE_REPORT
+  EXTRA_MENTORING
+}
+
+model User {
+  id                String             @id @default(cuid())
+  email             String             @unique
+  password          String
+  name              String?
+  phone             String?
+  preferredLanguage String             @default("ca")
+  role              Role               @default(USER)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  subscription      Subscription?
+  portfolio         Portfolio?
+  mentoringSessions MentoringSession[]
+}
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  userId               String             @unique
+  user                 User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status               SubscriptionStatus @default(INACTIVE)
+  plan                 String             @default("monthly")
+  startDate            DateTime?
+  renewalDate          DateTime?
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+}
+
+model Portfolio {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  positions Position[]
+  createdAt DateTime   @default(now())
+}
+
+model Position {
+  id           String    @id @default(cuid())
+  portfolioId  String
+  portfolio    Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+  ticker       String
+  companyName  String
+  quantity     Float
+  avgBuyPrice  Float
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model NewsArticle {
+  id              String     @id @default(cuid())
+  title           String
+  summary         String
+  source          String
+  url             String
+  publishedAt     DateTime   @default(now())
+  relatedTickers  String[]
+  status          NewsStatus @default(PENDING)
+  createdAt       DateTime   @default(now())
+}
+
+model MentoringSession {
+  id          String        @id @default(cuid())
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  scheduledAt DateTime
+  status      SessionStatus @default(SCHEDULED)
+  type        SessionType
+  price       Float         @default(0)
+  createdAt   DateTime      @default(now())
+}

@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0A0B0D;
+  --color-surface: #15171C;
+  --color-primary: #00D9A3;
+  --color-secondary: #3D7FFF;
+  --color-negative: #FF5C5C;
+  --color-foreground: #F2F2F0;
+  --color-muted: #9CA3AF;
+
+  --font-grotesk: 'Space Grotesk', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+:root {
+  --background: #0A0B0D;
+  --foreground: #F2F2F0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #0A0B0D;
+  color: #F2F2F0;
+  font-family: 'Inter', sans-serif;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.font-grotesk {
+  font-family: 'Space Grotesk', sans-serif;
+}

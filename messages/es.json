@@ -1,0 +1,308 @@
+{
+  "nav": {
+    "dashboard": "Panel",
+    "portfolio": "Cartera",
+    "news": "Noticias",
+    "mentoring": "Mentoría",
+    "subscription": "Suscripción",
+    "profile": "Perfil",
+    "admin": "Administración",
+    "logout": "Cerrar sesión",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "home": "Inicio"
+  },
+  "landing": {
+    "hero": {
+      "badge": "Plataforma profesional de inversión",
+      "title": "Invierte con",
+      "titleHighlight": "precisión y confianza",
+      "subtitle": "Factor OTC te proporciona análisis profesional, seguimiento de cartera en tiempo real y asesoramiento experto para tomar las mejores decisiones de inversión.",
+      "cta": "Empieza gratis",
+      "ctaSecondary": "Ver precios",
+      "scrollDown": "Descubre más"
+    },
+    "features": {
+      "title": "Todo lo que necesitas para invertir mejor",
+      "subtitle": "Desde el análisis hasta la ejecución, Factor OTC te acompaña en cada paso de tu viaje inversor.",
+      "portfolio": {
+        "title": "Seguimiento de Cartera",
+        "description": "Visualiza el rendimiento de tus inversiones en tiempo real con gráficos interactivos y métricas detalladas."
+      },
+      "news": {
+        "title": "Noticias Financieras",
+        "description": "Accede a noticias y análisis financiero filtrado por tus posiciones y sectores de interés."
+      },
+      "mentoring": {
+        "title": "Mentoría Personalizada",
+        "description": "Sesiones individuales con expertos financieros para mejorar tu estrategia de inversión."
+      },
+      "security": {
+        "title": "Seguridad Avanzada",
+        "description": "Tus datos y activos protegidos con la máxima seguridad y privacidad."
+      }
+    },
+    "stats": {
+      "users": "Usuarios activos",
+      "volume": "Volumen gestionado",
+      "satisfaction": "Satisfacción",
+      "sessions": "Sesiones de mentoría"
+    },
+    "cta": {
+      "title": "¿Listo para invertir mejor?",
+      "subtitle": "Únete a Factor OTC y accede a las herramientas que necesitas para tomar decisiones informadas.",
+      "button": "Empieza hoy"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Inicia sesión en tu cuenta de Factor OTC",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Iniciar sesión",
+      "forgotPassword": "¿Olvidaste la contraseña?",
+      "noAccount": "¿No tienes cuenta?",
+      "register": "Regístrate",
+      "error": "Credenciales incorrectas. Inténtalo de nuevo.",
+      "loading": "Iniciando sesión..."
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "subtitle": "Únete a Factor OTC",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "phone": "Teléfono (opcional)",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "language": "Idioma preferido",
+      "submit": "Crear cuenta",
+      "hasAccount": "¿Ya tienes cuenta?",
+      "login": "Inicia sesión",
+      "error": "Error al crear la cuenta. Inténtalo de nuevo.",
+      "loading": "Creando cuenta...",
+      "passwordMismatch": "Las contraseñas no coinciden",
+      "success": "Cuenta creada correctamente"
+    }
+  },
+  "dashboard": {
+    "title": "Panel",
+    "welcome": "Bienvenido",
+    "portfolioValue": "Valor de la cartera",
+    "todayChange": "Cambio hoy",
+    "totalReturn": "Rendimiento total",
+    "positions": "Posiciones",
+    "performance": "Rendimiento de los últimos 30 días",
+    "topPositions": "Principales posiciones",
+    "recentNews": "Noticias recientes",
+    "viewAll": "Ver todo",
+    "noData": "Sin datos disponibles",
+    "upgradeMessage": "Actualiza tu suscripción para ver todas las funcionalidades"
+  },
+  "portfolio": {
+    "title": "Mi cartera",
+    "totalValue": "Valor total",
+    "totalCost": "Coste total",
+    "totalReturn": "Rendimiento total",
+    "positions": "Posiciones",
+    "ticker": "Ticker",
+    "name": "Empresa",
+    "quantity": "Cantidad",
+    "avgCost": "Coste medio",
+    "currentPrice": "Precio actual",
+    "value": "Valor",
+    "return": "Rendimiento",
+    "returnPct": "% Rendimiento",
+    "noPositions": "No tienes posiciones en la cartera",
+    "addPosition": "Añadir posición",
+    "detail": {
+      "back": "Volver a la cartera",
+      "overview": "Visión general",
+      "history": "Historial",
+      "performance": "Rendimiento",
+      "about": "Sobre la empresa"
+    }
+  },
+  "news": {
+    "title": "Noticias financieras",
+    "subtitle": "Las últimas noticias del mercado y análisis financiero",
+    "readMore": "Leer más",
+    "relatedTickers": "Tickers relacionados",
+    "publishedAt": "Publicado el",
+    "noNews": "No hay noticias disponibles",
+    "filter": "Filtrar por ticker",
+    "allNews": "Todas las noticias",
+    "paywallTitle": "Contenido premium",
+    "paywallMessage": "Suscríbete para acceder a todas las noticias y análisis financiero."
+  },
+  "mentoring": {
+    "title": "Sesiones de mentoría",
+    "subtitle": "Sesión de orientación y sesiones adicionales de mentoría",
+    "freeReport": {
+      "title": "Informe de orientación gratuito",
+      "description": "Una sesión inicial gratuita para entender tu situación financiera y establecer objetivos claros.",
+      "cta": "Reservar sesión gratuita",
+      "included": "Incluido en todas las suscripciones"
+    },
+    "extraMentoring": {
+      "title": "Mentoría adicional",
+      "description": "Sesiones individuales en profundidad para analizar tu cartera y optimizar tu estrategia.",
+      "cta": "Reservar sesión",
+      "price": "€150 / sesión"
+    },
+    "sessions": "Mis sesiones",
+    "noSessions": "No tienes sesiones programadas",
+    "status": {
+      "scheduled": "Programada",
+      "completed": "Completada",
+      "cancelled": "Cancelada"
+    },
+    "type": {
+      "free_report": "Informe gratuito",
+      "extra_mentoring": "Mentoría adicional"
+    }
+  },
+  "pricing": {
+    "title": "Precios simples y transparentes",
+    "subtitle": "Elige el plan que mejor se adapte a tus necesidades de inversión.",
+    "monthly": "Mensual",
+    "annual": "Anual",
+    "save": "Ahorra 20%",
+    "free": {
+      "name": "Gratuito",
+      "price": "0€",
+      "period": "/mes",
+      "description": "Para inversores que quieren empezar",
+      "cta": "Empieza gratis",
+      "features": ["Informe de orientación gratuito", "Acceso básico a noticias", "Seguimiento de hasta 3 posiciones", "Panel básico"]
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "49€",
+      "priceAnnual": "39€",
+      "period": "/mes",
+      "description": "Para inversores serios",
+      "cta": "Suscribirse ahora",
+      "popular": "Más popular",
+      "features": ["Todo del plan Gratuito", "Cartera ilimitada", "Noticias y análisis completos", "1 sesión de mentoría al mes", "Alertas de mercado", "Exportación de datos"]
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "99€",
+      "priceAnnual": "79€",
+      "period": "/mes",
+      "description": "Para inversores profesionales",
+      "cta": "Suscribirse ahora",
+      "features": ["Todo del plan Pro", "Sesiones de mentoría ilimitadas", "Análisis personalizado", "Acceso prioritario", "Soporte dedicado", "API de acceso"]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "q1": "¿Puedo cancelar en cualquier momento?",
+      "a1": "Sí, puedes cancelar tu suscripción en cualquier momento sin penalizaciones.",
+      "q2": "¿Hay un período de prueba?",
+      "a2": "Ofrecemos un plan gratuito permanente y una sesión de orientación gratuita para todos los usuarios.",
+      "q3": "¿Cómo funcionan las sesiones de mentoría?",
+      "a3": "Las sesiones se programan a través de Calendly y se realizan por videoconferencia."
+    }
+  },
+  "profile": {
+    "title": "Mi perfil",
+    "personalInfo": "Información personal",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "language": "Idioma",
+    "save": "Guardar cambios",
+    "subscription": "Mi suscripción",
+    "plan": "Plan actual",
+    "status": "Estado",
+    "renewalDate": "Fecha de renovación",
+    "cancelSubscription": "Cancelar suscripción",
+    "security": "Seguridad",
+    "changePassword": "Cambiar contraseña",
+    "currentPassword": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "savePassword": "Guardar contraseña",
+    "saved": "Cambios guardados correctamente"
+  },
+  "admin": {
+    "title": "Administración",
+    "users": "Usuarios",
+    "portfolios": "Carteras",
+    "news": "Noticias",
+    "totalUsers": "Total usuarios",
+    "activeSubscriptions": "Suscripciones activas",
+    "totalRevenue": "Ingresos totales",
+    "pendingArticles": "Artículos pendientes",
+    "userList": "Lista de usuarios",
+    "portfolioList": "Lista de carteras",
+    "newsList": "Lista de noticias",
+    "publish": "Publicar",
+    "unpublish": "Despublicar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear nuevo artículo",
+    "articleTitle": "Título",
+    "articleSummary": "Resumen",
+    "articleContent": "Contenido",
+    "relatedTickers": "Tickers relacionados",
+    "status": "Estado"
+  },
+  "legal": {
+    "disclaimer": "PENDIENTE DE REVISION LEGAL POR ABOGADO ESPECIALIZADO - NO UTILIZAR EN PRODUCCION SIN VALIDACION PROFESIONAL",
+    "avisLegal": {
+      "title": "Aviso Legal",
+      "content": "Este sitio web es propiedad de Factor OTC. La información proporcionada en este sitio web tiene carácter informativo y no constituye asesoramiento financiero, fiscal o jurídico. Factor OTC no se hace responsable de las decisiones de inversión tomadas basándose en la información proporcionada en este sitio web. Los mercados financieros conllevan riesgos y los rendimientos pasados no garantizan resultados futuros."
+    },
+    "termes": {
+      "title": "Términos y Condiciones",
+      "content": "Al acceder y utilizar la plataforma Factor OTC, aceptas los presentes términos y condiciones. El uso de la plataforma implica la aceptación de nuestra política de privacidad y aviso legal. Factor OTC se reserva el derecho de modificar estos términos en cualquier momento."
+    },
+    "privacitat": {
+      "title": "Política de Privacidad",
+      "content": "Factor OTC recopila y procesa tus datos personales para proporcionar los servicios de la plataforma. Tus datos no se compartirán con terceros sin tu consentimiento explícito, excepto cuando sea requerido por ley. Tienes derecho a acceder, rectificar y eliminar tus datos personales."
+    }
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Se ha producido un error",
+    "retry": "Inténtalo de nuevo",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "export": "Exportar",
+    "currency": "€",
+    "yes": "Sí",
+    "no": "No",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "upgrade": "Actualizar plan",
+    "learnMore": "Saber más"
+  },
+  "freeReport": {
+    "title": "Solicita tu informe gratuito",
+    "subtitle": "Obtén un análisis personalizado de tu situación financiera sin ningún coste.",
+    "howItWorks": "Cómo funciona",
+    "step1": "Reserva tu cita",
+    "step1Desc": "Elige el día y la hora que mejor te convenga en nuestro calendario.",
+    "step2": "Prepárate",
+    "step2Desc": "Reúne información sobre tus inversiones actuales y objetivos.",
+    "step3": "Sesión de análisis",
+    "step3Desc": "Un experto revisará tu situación y te ofrecerá orientación personalizada.",
+    "cta": "Reservar cita gratuita",
+    "benefits": "Qué incluye",
+    "benefit1": "Análisis de tu cartera actual",
+    "benefit2": "Identificación de oportunidades de mejora",
+    "benefit3": "Recomendaciones personalizadas",
+    "benefit4": "Sin compromisos"
+  }
+}
