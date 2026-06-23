@@ -1,9 +1,11 @@
 import createMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { routing } from "./i18n/routing";
 
-const intlMiddleware = createMiddleware(routing);
+const intlMiddleware = createMiddleware({
+  locales: ["ca", "es"],
+  defaultLocale: "ca",
+});
 
 const privateRoutes = ["/dashboard", "/cartera", "/noticies", "/mentories", "/subscripcio", "/perfil"];
 const adminRoutes = ["/admin"];
