@@ -1,7 +1,3 @@
-export function generateStaticParams() {
-  return [{ locale: 'ca' }, { locale: 'es' }];
-}
-
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Space_Grotesk } from 'next/font/google';
@@ -54,4 +50,9 @@ export default async function LocaleLayout({
       </body>
     </html>
   );
+}
+
+
+export function generateStaticParams() {
+  return [{ locale: 'ca' }, { locale: 'es' }];
 }

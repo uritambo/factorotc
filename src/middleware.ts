@@ -1,15 +1,8 @@
-import createMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const intlMiddleware = createMiddleware({
-  locales: ["ca", "es"],
-  defaultLocale: "ca",
-});
-
 const privateRoutes = ["/dashboard", "/cartera", "/noticies", "/mentories", "/subscripcio", "/perfil"];
 const adminRoutes = ["/admin"];
-const subscriptionFreeRoutes = ["/perfil", "/subscripcio"];
 
 function getToken(request: NextRequest) {
   return (
@@ -21,9 +14,13 @@ function getToken(request: NextRequest) {
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Redirect root to default locale
+  if (pathname === "/") {
+    return NextResponse.redirect(new URL("/ca", request.url));
+  }
+
   // Strip locale prefix for route matching
   const pathnameWithoutLocale = pathname.replace(/^\/(ca|es)/, "") || "/";
-
   const isPrivate = privateRoutes.some((r) => pathnameWithoutLocale.startsWith(r));
   const isAdmin = adminRoutes.some((r) => pathnameWithoutLocale.startsWith(r));
 
@@ -35,7 +32,7 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  return intlMiddleware(request);
+  return NextResponse.next();
 }
 
 export const config = {
