@@ -17,8 +17,8 @@
       "badge": "Plataforma profesional de inversión",
       "title": "Invierte con",
       "titleHighlight": "precisión y confianza",
-      "subtitle": "Factor OTC te proporciona análisis profesional, seguimiento de cartera en tiempo real y asesoramiento experto para tomar las mejores decisiones de inversión.",
-      "cta": "Empieza gratis",
+      "subtitle": "Factor OTC te proporciona seguimiento de cartera en tiempo real, noticias financieras y mentoría personalizada para tomar mejores decisiones.",
+      "cta": "Reserva tu informe gratuito",
       "ctaSecondary": "Ver precios",
       "scrollDown": "Descubre más"
     },
@@ -52,6 +52,47 @@
       "title": "¿Listo para invertir mejor?",
       "subtitle": "Únete a Factor OTC y accede a las herramientas que necesitas para tomar decisiones informadas.",
       "button": "Empieza hoy"
+    },
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "subtitle": "Cuatro pasos sencillos para empezar a invertir con más claridad.",
+      "step1": {
+        "title": "Reserva la llamada gratuita",
+        "description": "Agenda una sesión inicial de 30 minutos sin coste ni compromiso."
+      },
+      "step2": {
+        "title": "Recibirás una propuesta personalizada",
+        "description": "Tras la llamada, prepararemos una propuesta de orientación adaptada a tus objetivos."
+      },
+      "step3": {
+        "title": "Haz seguimiento de tu cartera",
+        "description": "Visualiza tus posiciones, rendimiento y evolución en tiempo real desde el panel."
+      },
+      "step4": {
+        "title": "Accede a mentorías cuando lo necesites",
+        "description": "Reserva sesiones adicionales de mentoría para profundizar en tu estrategia."
+      }
+    },
+    "pricingSummary": {
+      "title": "Un precio sencillo y transparente",
+      "subtitle": "Sin sorpresas ni permanencia.",
+      "monthlyLabel": "Plan mensual",
+      "monthlyPrice": "10€",
+      "monthlyPer": "/mes",
+      "monthlyDesc": "Panel, noticias y newsletter",
+      "mentoringLabel": "Mentoría extra",
+      "mentoringPrice": "20€",
+      "mentoringPer": "/sesión",
+      "mentoringDesc": "Sesiones individuales cuando las necesites",
+      "cta": "Ver todos los precios"
+    },
+    "newsletter": {
+      "title": "Suscríbete a la newsletter",
+      "subtitle": "Análisis y noticias del mercado, cada semana en tu correo.",
+      "placeholder": "Tu correo electrónico",
+      "button": "Suscribirme",
+      "success": "¡Gracias! Te has suscrito correctamente.",
+      "error": "No se ha podido completar la suscripción. Inténtalo de nuevo."
     }
   },
   "auth": {
@@ -148,7 +189,7 @@
       "title": "Mentoría adicional",
       "description": "Sesiones individuales en profundidad para analizar tu cartera y optimizar tu estrategia.",
       "cta": "Reservar sesión",
-      "price": "€150 / sesión"
+      "price": "20€ / sesión"
     },
     "sessions": "Mis sesiones",
     "noSessions": "No tienes sesiones programadas",
@@ -160,69 +201,51 @@
     "type": {
       "free_report": "Informe gratuito",
       "extra_mentoring": "Mentoría adicional"
-    }
+    },
+    "price": "20€ / sesión",
+    "description": "Sesiones individuales de 60 minutos para revisar tu cartera, resolver dudas y profundizar en tu estrategia con un mentor.",
+    "includes": "Qué incluye",
+    "include1": "Sesión individual de 60 minutos",
+    "include2": "Revisión de tu cartera",
+    "include3": "Orientación personalizada",
+    "include4": "Resumen por escrito tras la sesión",
+    "bookSession": "Reserva tu sesión",
+    "paywallTitle": "Suscripción necesaria",
+    "paywallDesc": "Para reservar mentorías necesitas tener la suscripción mensual activa.",
+    "paywallCta": "Ver planes"
   },
   "pricing": {
     "title": "Precios simples y transparentes",
-    "subtitle": "Elige el plan que mejor se adapte a tus necesidades de inversión.",
-    "monthly": "Mensual",
-    "annual": "Anual",
-    "save": "Ahorra 20%",
-    "free": {
-      "name": "Gratuito",
-      "price": "0€",
-      "period": "/mes",
-      "description": "Para inversores que quieren empezar",
-      "cta": "Empieza gratis",
-      "features": [
-        "Informe de orientación gratuito",
-        "Acceso básico a noticias",
-        "Seguimiento de hasta 3 posiciones",
-        "Panel básico"
-      ]
-    },
-    "pro": {
-      "name": "Pro",
-      "price": "49€",
-      "priceAnnual": "39€",
-      "period": "/mes",
-      "description": "Para inversores serios",
-      "cta": "Suscribirse ahora",
-      "popular": "Más popular",
-      "features": [
-        "Todo del plan Gratuito",
-        "Cartera ilimitada",
-        "Noticias y análisis completos",
-        "1 sesión de mentoría al mes",
-        "Alertas de mercado",
-        "Exportación de datos"
-      ]
-    },
-    "premium": {
-      "name": "Premium",
-      "price": "99€",
-      "priceAnnual": "79€",
-      "period": "/mes",
-      "description": "Para inversores profesionales",
-      "cta": "Suscribirse ahora",
-      "features": [
-        "Todo del plan Pro",
-        "Sesiones de mentoría ilimitadas",
-        "Análisis personalizado",
-        "Acceso prioritario",
-        "Soporte dedicado",
-        "API de acceso"
-      ]
-    },
-    "faq": {
-      "title": "Preguntas frecuentes",
-      "q1": "¿Puedo cancelar en cualquier momento?",
-      "a1": "Sí, puedes cancelar tu suscripción en cualquier momento sin penalizaciones.",
-      "q2": "¿Hay un período de prueba?",
-      "a2": "Ofrecemos un plan gratuito permanente y una sesión de orientación gratuita para todos los usuarios.",
-      "q3": "¿Cómo funcionan las sesiones de mentoría?",
-      "a3": "Las sesiones se programan a través de Calendly y se realizan por videoconferencia."
-    }
+    "subtitle": "Un plan mensual asequible y mentorías adicionales cuando las necesites.",
+    "monthlyPlan": "Plan mensual",
+    "monthlyPrice": "10€",
+    "monthlyPer": "/mes",
+    "monthlyDescription": "Acceso completo a la plataforma para hacer seguimiento de tu cartera.",
+    "monthlyIncludes": "Qué incluye",
+    "monthly1": "Panel de cartera en tiempo real",
+    "monthly2": "Noticias financieras",
+    "monthly3": "Newsletter semanal",
+    "monthly4": "Seguimiento de posiciones ilimitado",
+    "monthly5": "Acceso desde cualquier dispositivo",
+    "popular": "Más popular",
+    "getStarted": "Empezar ahora",
+    "mentoringTitle": "Mentoría extra",
+    "mentoringPrice": "20€",
+    "mentoringPer": "/sesión",
+    "mentoringDescription": "Sesiones individuales de mentoría para profundizar en tu estrategia.",
+    "mentoringIncludes": "Qué incluye",
+    "mentoring1": "Sesión individual de 60 minutos",
+    "mentoring2": "Revisión de tu cartera",
+    "mentoring3": "Orientación personalizada",
+    "mentoring4": "Resumen por escrito tras la sesión",
+    "bookMentoring": "Reservar mentoría",
+    "faqTitle": "Preguntas frecuentes",
+    "faq1Q": "¿Puedo cancelar en cualquier momento?",
+    "faq1A": "Sí, puedes cancelar tu suscripción en cualquier momento desde la página de suscripción, sin penalizaciones. Mantendrás el acceso hasta el final del periodo facturado.",
+    "faq2Q": "¿Cómo se factura el plan mensual?",
+    "faq2A": "El pago se procesa de forma segura vía Stripe cada mes a partir de la fecha de alta. Recibirás una factura por correo electrónico.",
+    "faq3Q": "¿Cómo funcionan las mentorías extra?",
+    "faq3A": "Las sesiones se pagan individualmente (20€/sesión), se reservan vía Calendly y se realizan por videoconferencia. Es necesario tener la suscripción mensual activa."
   },
   "profile": {
     "title": "Mi perfil",
@@ -266,10 +289,11 @@
     "articleSummary": "Resumen",
     "articleContent": "Contenido",
     "relatedTickers": "Tickers relacionados",
-    "status": "Estado"
+    "status": "Estado",
+    "mentoringThisWeek": "Mentorías esta semana"
   },
   "legal": {
-    "disclaimer": "PENDIENTE DE REVISION LEGAL POR ABOGADO ESPECIALIZADO - NO UTILIZAR EN PRODUCCION SIN VALIDACION PROFESIONAL",
+    "disclaimer": "[PENDENT DE REVISIÓ LEGAL PER ADVOCAT ESPECIALITZAT — NO UTILITZAR EN PRODUCCIÓ SENSE VALIDACIÓ PROFESSIONAL]",
     "avisLegal": {
       "title": "Aviso Legal",
       "content": "Este sitio web es propiedad de Factor OTC. La información proporcionada en este sitio web tiene carácter informativo y no constituye asesoramiento financiero, fiscal o jurídico. Factor OTC no se hace responsable de las decisiones de inversión tomadas basándose en la información proporcionada en este sitio web. Los mercados financieros conllevan riesgos y los rendimientos pasados no garantizan resultados futuros."
@@ -321,7 +345,7 @@
     "benefits": "Qué incluye",
     "benefit1": "Análisis de tu cartera actual",
     "benefit2": "Identificación de oportunidades de mejora",
-    "benefit3": "Recomendaciones personalizadas",
+    "benefit3": "Orientación personalizada",
     "benefit4": "Sin compromisos"
   },
   "subscription": {
@@ -338,6 +362,21 @@
     "noMentorings": "Todavía no has contratado ninguna mentoría.",
     "bookFirstMentoring": "Reservar primera mentoría",
     "stripePortal": "Gestionar via Stripe",
-    "activeSubscriptions": "Suscripciones activas"
+    "activeSubscriptions": "Suscripciones activas",
+    "subtitle": "Gestiona tu plan y la facturación",
+    "planName": "Plan mensual — 10€/mes",
+    "noRenewal": "—",
+    "portalHint": "El pago y las facturas se gestionan de forma segura a través de Stripe.",
+    "date": "Fecha",
+    "type": "Tipo",
+    "sessionStatus": "Estado",
+    "price": "Precio",
+    "subscribeCta": "Activar suscripción"
+  },
+  "paywall": {
+    "title": "Contenido premium",
+    "description": "Suscríbete para acceder a todas las funcionalidades de Factor OTC.",
+    "cta": "Ver planes",
+    "dismiss": "Ahora no"
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { CalendlyEmbed } from "@/components/CalendlyEmbed";
 import { PaywallModal } from "@/components/ui/PaywallModal";
@@ -8,10 +9,12 @@ import { CheckCircle, Clock, FileText, ArrowRight } from "lucide-react";
 
 export default function MentoriesPage() {
   const t = useTranslations("mentoring");
+  const params = useParams();
+  const locale = (params?.locale as string) ?? "ca";
   const { data: session } = useSession();
   const [showPaywall, setShowPaywall] = useState(false);
 
-  const user = session?.user as any;
+  const user = session?.user as { subscriptionStatus?: string } | undefined;
   const hasSubscription = user?.subscriptionStatus === "ACTIVE";
 
   const includes = [t("include1"), t("include2"), t("include3"), t("include4")];
@@ -57,17 +60,15 @@ export default function MentoriesPage() {
         <div className="bg-[#15171C] border border-white/5 rounded-xl p-6">
           <div className="flex items-center gap-2 mb-4">
             <FileText size={16} className="text-[#00D9A3]" />
-            <span className="text-xs text-[#00D9A3] font-medium uppercase tracking-wide">Informe inicial</span>
+            <span className="text-xs text-[#00D9A3] font-medium uppercase tracking-wide">{t("freeReport.included")}</span>
           </div>
-          <h3 className="text-lg font-semibold text-[#F2F2F0] mb-2">Primera sessió gratuïta</h3>
-          <p className="text-sm text-[#9CA3AF] mb-5 leading-relaxed">
-            Si encara no has fet la primera sessió de contacte, comença per aquí. És completament gratuïta.
-          </p>
+          <h3 className="text-lg font-semibold text-[#F2F2F0] mb-2">{t("freeReport.title")}</h3>
+          <p className="text-sm text-[#9CA3AF] mb-5 leading-relaxed">{t("freeReport.description")}</p>
           <a
-            href="/ca/informe-gratuit"
+            href={`/${locale}/informe-gratuit`}
             className="inline-flex items-center gap-2 text-sm text-[#00D9A3] hover:underline"
           >
-            Reservar sessió gratuïta <ArrowRight size={14} />
+            {t("freeReport.cta")} <ArrowRight size={14} />
           </a>
         </div>
       </div>

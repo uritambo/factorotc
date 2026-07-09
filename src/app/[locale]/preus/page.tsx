@@ -1,13 +1,17 @@
 import { getTranslations } from "next-intl/server";
-import { CheckCircle, ChevronDown } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import Link from "next/link";
+import { PaywallOnRedirect } from "@/components/ui/PaywallOnRedirect";
 
 export default async function PreusPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ paywall?: string }>;
 }) {
   const { locale } = await params;
+  const { paywall } = await searchParams;
   const t = await getTranslations("pricing");
 
   const monthlyFeatures = [t("monthly1"), t("monthly2"), t("monthly3"), t("monthly4"), t("monthly5")];
@@ -21,6 +25,7 @@ export default async function PreusPage({
 
   return (
     <div className="min-h-screen bg-[#0A0B0D] px-6 py-20">
+      {paywall && <PaywallOnRedirect />}
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-[#F2F2F0] mb-4" style={{ fontFamily: "var(--font-space-grotesk)" }}>
@@ -33,7 +38,7 @@ export default async function PreusPage({
           {/* Monthly */}
           <div className="bg-[#15171C] border border-[#00D9A3]/30 rounded-xl p-8 shadow-[0_0_40px_rgba(0,217,163,0.06)] relative">
             <div className="absolute -top-3 left-6 bg-[#00D9A3] text-black text-xs font-bold px-3 py-1 rounded-full">
-              Més popular
+              {t("popular")}
             </div>
             <p className="text-xs font-medium text-[#00D9A3] uppercase tracking-wide mb-4">{t("monthlyPlan")}</p>
             <div className="flex items-baseline gap-1 mb-2">

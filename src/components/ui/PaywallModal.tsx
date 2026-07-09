@@ -1,5 +1,6 @@
 "use client";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Lock, X, Zap } from "lucide-react";
 import Link from "next/link";
 
@@ -11,7 +12,7 @@ interface PaywallModalProps {
 }
 
 export function PaywallModal({ isOpen = true, onClose, title, description }: PaywallModalProps) {
-  const router = useRouter();
+  const t = useTranslations("paywall");
   const params = useParams();
   const locale = (params?.locale as string) ?? "ca";
 
@@ -31,10 +32,10 @@ export function PaywallModal({ isOpen = true, onClose, title, description }: Pay
             <Lock size={28} className="text-[#00D9A3]" />
           </div>
           <h2 className="text-2xl font-bold text-[#F2F2F0] mb-3" style={{ fontFamily: "var(--font-space-grotesk)" }}>
-            {title ?? "Contingut premium"}
+            {title ?? t("title")}
           </h2>
           <p className="text-[#9CA3AF] mb-8">
-            {description ?? "Subscriu-te per accedir a totes les funcionalitats de Factor OTC."}
+            {description ?? t("description")}
           </p>
           <Link
             href={`/${locale}/preus`}
@@ -42,11 +43,11 @@ export function PaywallModal({ isOpen = true, onClose, title, description }: Pay
             onClick={onClose}
           >
             <Zap size={18} />
-            Veure plans
+            {t("cta")}
           </Link>
           {onClose && (
             <button onClick={onClose} className="mt-3 text-[#9CA3AF] hover:text-[#F2F2F0] text-sm transition-colors">
-              Ara no
+              {t("dismiss")}
             </button>
           )}
         </div>

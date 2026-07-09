@@ -17,8 +17,8 @@
       "badge": "Plataforma professional d'inversió",
       "title": "Inverteix amb",
       "titleHighlight": "precisió i confiança",
-      "subtitle": "Factor OTC et proporciona anàlisi professional, seguiment de cartera en temps real i assessorament expert per prendre les millors decisions d'inversió.",
-      "cta": "Comença gratis",
+      "subtitle": "Factor OTC et proporciona seguiment de cartera en temps real, notícies financeres en català i mentoria personalitzada per prendre millors decisions.",
+      "cta": "Reserva el teu informe gratuït",
       "ctaSecondary": "Veure preus",
       "scrollDown": "Descobreix més"
     },
@@ -52,6 +52,47 @@
       "title": "Llest per invertir millor?",
       "subtitle": "Uneix-te a Factor OTC i accedeix a les eines que necessites per prendre decisions informades.",
       "button": "Comença avui"
+    },
+    "howItWorks": {
+      "title": "Com funciona",
+      "subtitle": "Quatre passos senzills per començar a invertir amb més claredat.",
+      "step1": {
+        "title": "Reserva la trucada gratuïta",
+        "description": "Agenda una sessió inicial de 30 minuts sense cap cost ni compromís."
+      },
+      "step2": {
+        "title": "Rebràs una proposta personalitzada",
+        "description": "Després de la trucada, prepararem una proposta d'orientació adaptada als teus objectius."
+      },
+      "step3": {
+        "title": "Fes seguiment de la teva cartera",
+        "description": "Visualitza les teves posicions, rendiment i evolució en temps real des del tauler."
+      },
+      "step4": {
+        "title": "Accedeix a mentories quan ho necessitis",
+        "description": "Reserva sessions addicionals de mentoria per aprofundir en la teva estratègia."
+      }
+    },
+    "pricingSummary": {
+      "title": "Un preu senzill i transparent",
+      "subtitle": "Sense sorpreses ni permanència.",
+      "monthlyLabel": "Pla mensual",
+      "monthlyPrice": "10€",
+      "monthlyPer": "/mes",
+      "monthlyDesc": "Tauler, notícies i newsletter",
+      "mentoringLabel": "Mentoria extra",
+      "mentoringPrice": "20€",
+      "mentoringPer": "/sessió",
+      "mentoringDesc": "Sessions individuals quan les necessitis",
+      "cta": "Veure tots els preus"
+    },
+    "newsletter": {
+      "title": "Subscriu-te a la newsletter",
+      "subtitle": "Anàlisi i notícies del mercat en català, cada setmana al teu correu.",
+      "placeholder": "El teu correu electrònic",
+      "button": "Subscriure'm",
+      "success": "Gràcies! T'has subscrit correctament.",
+      "error": "No s'ha pogut completar la subscripció. Torna-ho a intentar."
     }
   },
   "auth": {
@@ -145,7 +186,7 @@
       "title": "Mentoria addicional",
       "description": "Sessions individuals aprofundides per analitzar la teva cartera i optimitzar la teva estratègia.",
       "cta": "Reservar sessió",
-      "price": "€150 / sessió"
+      "price": "20€ / sessió"
     },
     "sessions": "Les meves sessions",
     "noSessions": "No tens sessions programades",
@@ -157,69 +198,51 @@
     "type": {
       "free_report": "Informe gratuït",
       "extra_mentoring": "Mentoria addicional"
-    }
+    },
+    "price": "20€ / sessió",
+    "description": "Sessions individuals de 60 minuts per revisar la teva cartera, resoldre dubtes i aprofundir en la teva estratègia amb un mentor.",
+    "includes": "Què inclou",
+    "include1": "Sessió individual de 60 minuts",
+    "include2": "Revisió de la teva cartera",
+    "include3": "Orientació personalitzada",
+    "include4": "Resum per escrit després de la sessió",
+    "bookSession": "Reserva la teva sessió",
+    "paywallTitle": "Subscripció necessària",
+    "paywallDesc": "Per reservar mentories necessites tenir la subscripció mensual activa.",
+    "paywallCta": "Veure plans"
   },
   "pricing": {
     "title": "Preus simples i transparents",
-    "subtitle": "Tria el pla que millor s'adapti a les teves necessitats d'inversió.",
-    "monthly": "Mensual",
-    "annual": "Anual",
-    "save": "Estalvia 20%",
-    "free": {
-      "name": "Gratuït",
-      "price": "0€",
-      "period": "/mes",
-      "description": "Per a inversors que volen començar",
-      "cta": "Comença gratis",
-      "features": [
-        "Informe d'orientació gratuït",
-        "Accés bàsic a notícies",
-        "Seguiment de fins a 3 posicions",
-        "Tauler bàsic"
-      ]
-    },
-    "pro": {
-      "name": "Pro",
-      "price": "49€",
-      "priceAnnual": "39€",
-      "period": "/mes",
-      "description": "Per a inversors seriosos",
-      "cta": "Subscriure's ara",
-      "popular": "Més popular",
-      "features": [
-        "Tot del pla Gratuït",
-        "Cartera il·limitada",
-        "Notícies i anàlisi completes",
-        "1 sessió de mentoria al mes",
-        "Alertes de mercat",
-        "Exportació de dades"
-      ]
-    },
-    "premium": {
-      "name": "Premium",
-      "price": "99€",
-      "priceAnnual": "79€",
-      "period": "/mes",
-      "description": "Per a inversors professionals",
-      "cta": "Subscriure's ara",
-      "features": [
-        "Tot del pla Pro",
-        "Sessions de mentoria il·limitades",
-        "Anàlisi personalitzada",
-        "Accés prioritari",
-        "Suport dedicat",
-        "API d'accés"
-      ]
-    },
-    "faq": {
-      "title": "Preguntes freqüents",
-      "q1": "Puc cancel·lar en qualsevol moment?",
-      "a1": "Sí, pots cancel·lar la teva subscripció en qualsevol moment sense penalitzacions.",
-      "q2": "Hi ha un període de prova?",
-      "a2": "Oferim un pla gratuït permanent i una sessió d'orientació gratuïta per a tots els usuaris.",
-      "q3": "Com funcionen les sessions de mentoria?",
-      "a3": "Les sessions es programen a través de Calendly i es realitzen per videoconferència."
-    }
+    "subtitle": "Un pla mensual assequible i mentories addicionals quan les necessitis.",
+    "monthlyPlan": "Pla mensual",
+    "monthlyPrice": "10€",
+    "monthlyPer": "/mes",
+    "monthlyDescription": "Accés complet a la plataforma per fer seguiment de la teva cartera.",
+    "monthlyIncludes": "Què inclou",
+    "monthly1": "Tauler de cartera en temps real",
+    "monthly2": "Notícies financeres en català",
+    "monthly3": "Newsletter setmanal",
+    "monthly4": "Seguiment de posicions il·limitat",
+    "monthly5": "Accés des de qualsevol dispositiu",
+    "popular": "Més popular",
+    "getStarted": "Començar ara",
+    "mentoringTitle": "Mentoria extra",
+    "mentoringPrice": "20€",
+    "mentoringPer": "/sessió",
+    "mentoringDescription": "Sessions individuals de mentoria per aprofundir en la teva estratègia.",
+    "mentoringIncludes": "Què inclou",
+    "mentoring1": "Sessió individual de 60 minuts",
+    "mentoring2": "Revisió de la teva cartera",
+    "mentoring3": "Orientació personalitzada",
+    "mentoring4": "Resum per escrit després de la sessió",
+    "bookMentoring": "Reservar mentoria",
+    "faqTitle": "Preguntes freqüents",
+    "faq1Q": "Puc cancel·lar en qualsevol moment?",
+    "faq1A": "Sí, pots cancel·lar la teva subscripció en qualsevol moment des de la pàgina de subscripció, sense penalitzacions. Mantindràs l'accés fins al final del període facturat.",
+    "faq2Q": "Com es factura el pla mensual?",
+    "faq2A": "El pagament es processa de manera segura via Stripe cada mes a partir de la data d'alta. Rebràs una factura per correu electrònic.",
+    "faq3Q": "Com funcionen les mentories extra?",
+    "faq3A": "Les sessions es paguen individualment (20€/sessió), es reserven via Calendly i es fan per videoconferència. Cal tenir la subscripció mensual activa."
   },
   "profile": {
     "title": "El meu perfil",
@@ -263,10 +286,11 @@
     "articleSummary": "Resum",
     "articleContent": "Contingut",
     "relatedTickers": "Tickers relacionats",
-    "status": "Estat"
+    "status": "Estat",
+    "mentoringThisWeek": "Mentories aquesta setmana"
   },
   "legal": {
-    "disclaimer": "PENDENT DE REVISIO LEGAL PER ADVOCAT ESPECIALITZAT - NO UTILITZAR EN PRODUCCIO SENSE VALIDACIO PROFESSIONAL",
+    "disclaimer": "[PENDENT DE REVISIÓ LEGAL PER ADVOCAT ESPECIALITZAT — NO UTILITZAR EN PRODUCCIÓ SENSE VALIDACIÓ PROFESSIONAL]",
     "avisLegal": {
       "title": "Avís Legal",
       "content": "Aquest lloc web és propietat de Factor OTC. La informació proporcionada en aquest lloc web té caràcter informatiu i no constitueix assessorament financer, fiscal o jurídic. Factor OTC no es fa responsable de les decisions d'inversió preses basant-se en la informació proporcionada en aquest lloc web. Els mercats financers comporten riscos i els rendiments passats no garanteixen resultats futurs."
@@ -318,7 +342,7 @@
     "benefits": "Què inclou",
     "benefit1": "Anàlisi de la teva cartera actual",
     "benefit2": "Identificació d'oportunitats de millora",
-    "benefit3": "Recomanacions personalitzades",
+    "benefit3": "Orientació personalitzada",
     "benefit4": "Sense compromisos"
   },
   "subscription": {
@@ -335,6 +359,21 @@
     "noMentorings": "Encara no has contractat cap mentoria.",
     "bookFirstMentoring": "Reservar primera mentoria",
     "stripePortal": "Gestionar via Stripe",
-    "activeSubscriptions": "Subscripcions actives"
+    "activeSubscriptions": "Subscripcions actives",
+    "subtitle": "Gestiona el teu pla i la facturació",
+    "planName": "Pla mensual — 10€/mes",
+    "noRenewal": "—",
+    "portalHint": "El pagament i les factures es gestionen de manera segura a través de Stripe.",
+    "date": "Data",
+    "type": "Tipus",
+    "sessionStatus": "Estat",
+    "price": "Preu",
+    "subscribeCta": "Activar subscripció"
+  },
+  "paywall": {
+    "title": "Contingut premium",
+    "description": "Subscriu-te per accedir a totes les funcionalitats de Factor OTC.",
+    "cta": "Veure plans",
+    "dismiss": "Ara no"
   }
 }

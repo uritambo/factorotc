@@ -1,7 +1,29 @@
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { auth } from '@/lib/auth';
-import { Check, Zap, Crown, Star } from 'lucide-react';
+import { prisma } from '@/lib/prisma';
+import { getSubscription } from '@/lib/subscription';
+import { SubscriptionActions } from '@/components/SubscriptionActions';
+import { CalendarDays, GraduationCap, FileText } from 'lucide-react';
+
+type MentoringHistoryItem = {
+  id: string;
+  scheduledAt: Date;
+  status: 'SCHEDULED' | 'COMPLETED' | 'CANCELLED';
+  type: 'FREE_REPORT' | 'EXTRA_MENTORING';
+  price: number;
+};
+
+async function getMentoringHistory(userId: string): Promise<MentoringHistoryItem[]> {
+  try {
+    return await prisma.mentoringSession.findMany({
+      where: { userId },
+      orderBy: { scheduledAt: 'desc' },
+    });
+  } catch {
+    return [];
+  }
+}
 
 export default async function SubscripcioPage({
   params,
@@ -9,162 +31,128 @@ export default async function SubscripcioPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const t = await getTranslations();
+  const t = await getTranslations('subscription');
+  const tMentoring = await getTranslations('mentoring');
   const session = await auth();
 
-  // Mock subscription data
-  const subscription = {
-    status: 'INACTIVE',
-    plan: null,
-  };
+  const userId = (session?.user as { id: string } | undefined)?.id ?? '';
+  const subscription = userId ? await getSubscription(userId) : null;
+  const history = userId ? await getMentoringHistory(userId) : [];
 
-  const plans = [
-    {
-      name: 'Gratuït',
-      price: '0€',
-      period: '/mes',
-      description: 'Per a inversors que volen començar',
-      icon: Star,
-      color: '#9CA3AF',
-      current: !subscription.plan || subscription.plan === 'free',
-      features: [
-        'Informe d\'orientació gratuït',
-        'Accés bàsic a notícies',
-        'Seguiment de fins a 3 posicions',
-        'Tauler bàsic',
-      ],
-    },
-    {
-      name: 'Pro',
-      price: '49€',
-      period: '/mes',
-      description: 'Per a inversors seriosos',
-      icon: Zap,
-      color: '#00D9A3',
-      popular: true,
-      current: subscription.plan === 'pro',
-      features: [
-        'Tot del pla Gratuït',
-        'Cartera il·limitada',
-        'Notícies i anàlisi completes',
-        '1 sessió de mentoria al mes',
-        'Alertes de mercat',
-        'Exportació de dades',
-      ],
-    },
-    {
-      name: 'Premium',
-      price: '99€',
-      period: '/mes',
-      description: 'Per a inversors professionals',
-      icon: Crown,
-      color: '#3D7FFF',
-      current: subscription.plan === 'premium',
-      features: [
-        'Tot del pla Pro',
-        'Sessions de mentoria il·limitades',
-        'Anàlisi personalitzada',
-        'Accés prioritari',
-        'Suport dedicat',
-        'API d\'accés',
-      ],
-    },
-  ];
+  const isActive = subscription?.status === 'ACTIVE';
+  const statusLabel =
+    subscription?.status === 'ACTIVE'
+      ? t('active')
+      : subscription?.status === 'CANCELLED'
+      ? t('cancelled')
+      : t('inactive');
+  const statusClasses = isActive
+    ? 'bg-[#00D9A3]/10 text-[#00D9A3]'
+    : subscription?.status === 'CANCELLED'
+    ? 'bg-[#FF5C5C]/10 text-[#FF5C5C]'
+    : 'bg-[#9CA3AF]/10 text-[#9CA3AF]';
+
+  const dateFormatter = new Intl.DateTimeFormat(locale === 'es' ? 'es-ES' : 'ca-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+  const statusKey = { SCHEDULED: 'scheduled', COMPLETED: 'completed', CANCELLED: 'cancelled' } as const;
+  const typeKey = { FREE_REPORT: 'free_report', EXTRA_MENTORING: 'extra_mentoring' } as const;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 max-w-4xl">
       <div>
-        <h1 className="font-grotesk text-3xl font-bold text-[#F2F2F0]">La meva subscripció</h1>
-        <p className="text-[#9CA3AF] mt-1">Gestiona el teu pla i facturació</p>
+        <h1 className="font-grotesk text-3xl font-bold text-[#F2F2F0]">{t('title')}</h1>
+        <p className="text-[#9CA3AF] mt-1">{t('subtitle')}</p>
       </div>
 
-      {/* Current Status */}
+      {/* Estat actual */}
       <div className="border border-white/5 bg-[#15171C] rounded-xl p-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
-            <p className="text-sm text-[#9CA3AF] mb-1">Pla actual</p>
-            <p className="font-grotesk text-xl font-bold text-[#F2F2F0]">
-              {subscription.plan ? subscription.plan : 'Gratuït'}
-            </p>
+            <p className="text-sm text-[#9CA3AF] mb-1">{t('plan')}</p>
+            <p className="font-grotesk text-xl font-bold text-[#F2F2F0]">{t('planName')}</p>
           </div>
-          <span className="bg-[#9CA3AF]/10 text-[#9CA3AF] text-sm font-medium px-3 py-1.5 rounded-full">
-            Inactiu
+          <span className={`self-start sm:self-auto text-sm font-medium px-3 py-1.5 rounded-full ${statusClasses}`}>
+            {statusLabel}
           </span>
         </div>
+
+        <div className="flex items-center gap-2 text-sm text-[#9CA3AF] mb-6">
+          <CalendarDays size={15} />
+          <span>{t('renewalDate')}:</span>
+          <span className="text-[#F2F2F0] tabular-nums">
+            {subscription?.renewalDate ? dateFormatter.format(subscription.renewalDate) : t('noRenewal')}
+          </span>
+        </div>
+
+        <SubscriptionActions
+          isActive={isActive}
+          hasStripeCustomer={Boolean(subscription?.stripeCustomerId)}
+        />
       </div>
 
-      {/* Plans */}
-      <div className="grid md:grid-cols-3 gap-6">
-        {plans.map((plan) => {
-          const Icon = plan.icon;
-          return (
-            <div
-              key={plan.name}
-              className={`relative border rounded-xl p-6 flex flex-col transition-all ${
-                plan.current
-                  ? 'border-[#00D9A3]/30 bg-[#00D9A3]/5'
-                  : plan.popular
-                  ? 'border-[#00D9A3]/20 bg-[#15171C] hover:border-[#00D9A3]/30'
-                  : 'border-white/5 bg-[#15171C] hover:border-white/10'
-              }`}
-            >
-              {plan.popular && !plan.current && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-[#00D9A3] text-[#0A0B0D] text-xs font-bold px-4 py-1.5 rounded-full">
-                    Recomanat
-                  </span>
-                </div>
-              )}
-              {plan.current && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-white/10 text-[#F2F2F0] text-xs font-bold px-4 py-1.5 rounded-full">
-                    Pla actual
-                  </span>
-                </div>
-              )}
+      {/* Historial de mentories */}
+      <div className="border border-white/5 bg-[#15171C] rounded-xl p-6">
+        <h2 className="font-grotesk text-lg font-semibold text-[#F2F2F0] mb-5">
+          {t('mentoringHistory')}
+        </h2>
 
-              <div className="mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
-                  style={{ backgroundColor: `${plan.color}15` }}
-                >
-                  <Icon size={22} style={{ color: plan.color }} />
-                </div>
-                <h3 className="font-grotesk text-xl font-bold text-[#F2F2F0]">{plan.name}</h3>
-                <p className="text-sm text-[#9CA3AF] mt-1">{plan.description}</p>
-              </div>
-
-              <div className="mb-6">
-                <span className="font-grotesk text-3xl font-bold text-[#F2F2F0] tabular-nums">{plan.price}</span>
-                <span className="text-[#9CA3AF] text-sm">{plan.period}</span>
-              </div>
-
-              <ul className="space-y-2 mb-6 flex-1">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2">
-                    <Check size={14} className="text-[#00D9A3] flex-shrink-0 mt-0.5" />
-                    <span className="text-xs text-[#9CA3AF]">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {plan.current ? (
-                <div className="w-full py-2.5 rounded-lg text-center text-sm font-medium bg-white/5 text-[#9CA3AF] cursor-default">
-                  Pla actual
-                </div>
-              ) : (
-                <button className="w-full py-2.5 rounded-lg text-sm font-semibold transition-all bg-[#00D9A3] hover:bg-[#00D9A3]/90 text-[#0A0B0D]">
-                  Subscriure's
-                </button>
-              )}
+        {history.length === 0 ? (
+          <div className="flex flex-col items-center text-center py-8 gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#3D7FFF]/10 flex items-center justify-center">
+              <GraduationCap size={22} className="text-[#3D7FFF]" />
             </div>
-          );
-        })}
+            <p className="text-sm text-[#9CA3AF]">{t('noMentorings')}</p>
+            <Link
+              href={`/${locale}/mentories`}
+              className="text-sm text-[#00D9A3] hover:underline font-medium"
+            >
+              {t('bookFirstMentoring')}
+            </Link>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-left text-xs text-[#9CA3AF] uppercase tracking-wide border-b border-white/5">
+                  <th className="pb-3 pr-4 font-medium">{t('date')}</th>
+                  <th className="pb-3 pr-4 font-medium">{t('type')}</th>
+                  <th className="pb-3 pr-4 font-medium">{t('sessionStatus')}</th>
+                  <th className="pb-3 font-medium text-right">{t('price')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {history.map((item) => (
+                  <tr key={item.id} className="border-b border-white/5 last:border-0">
+                    <td className="py-3 pr-4 text-[#F2F2F0] tabular-nums">
+                      {dateFormatter.format(item.scheduledAt)}
+                    </td>
+                    <td className="py-3 pr-4 text-[#9CA3AF]">
+                      <span className="inline-flex items-center gap-1.5">
+                        {item.type === 'FREE_REPORT' ? (
+                          <FileText size={13} className="text-[#00D9A3]" />
+                        ) : (
+                          <GraduationCap size={13} className="text-[#3D7FFF]" />
+                        )}
+                        {tMentoring(`type.${typeKey[item.type]}`)}
+                      </span>
+                    </td>
+                    <td className="py-3 pr-4 text-[#9CA3AF]">
+                      {tMentoring(`status.${statusKey[item.status]}`)}
+                    </td>
+                    <td className="py-3 text-right text-[#F2F2F0] tabular-nums">
+                      {item.price > 0 ? `${item.price.toFixed(2)}€` : '—'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
-
-      <p className="text-xs text-[#9CA3AF] text-center">
-        Els pagaments es processen de forma segura a través de Stripe. Pots cancel·lar en qualsevol moment.
-      </p>
     </div>
   );
 }

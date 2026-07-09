@@ -6,12 +6,14 @@ const adminRoutes = ["/admin"];
 
 function getToken(request: NextRequest) {
   return (
+    request.cookies.get("authjs.session-token")?.value ||
+    request.cookies.get("__Secure-authjs.session-token")?.value ||
     request.cookies.get("next-auth.session-token")?.value ||
     request.cookies.get("__Secure-next-auth.session-token")?.value
   );
 }
 
-export default function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Redirect root to default locale
@@ -32,7 +34,11 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  // Expose the pathname so server layouts can apply route-dependent rules
+  // (e.g. the subscription paywall exempts /perfil and /subscripcio)
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-pathname", pathname);
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 export const config = {

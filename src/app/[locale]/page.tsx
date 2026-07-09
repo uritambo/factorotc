@@ -1,7 +1,20 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { PublicNavbar } from '@/components/layout/PublicNavbar';
-import { TrendingUp, PieChart, Newspaper, Users, Shield, ArrowRight, Check, Star } from 'lucide-react';
+import { NewsletterForm } from '@/components/NewsletterForm';
+import {
+  TrendingUp,
+  PieChart,
+  Newspaper,
+  Users,
+  Shield,
+  ArrowRight,
+  Star,
+  PhoneCall,
+  FileText,
+  LineChart,
+  GraduationCap,
+} from 'lucide-react';
 
 function HeroSection({ locale }: { locale: string }) {
   const t = useTranslations('landing');
@@ -21,7 +34,7 @@ function HeroSection({ locale }: { locale: string }) {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href={`/${locale}/registre`}
+            href={`/${locale}/informe-gratuit`}
             className="inline-flex items-center justify-center gap-2 bg-[#00D9A3] hover:bg-[#00D9A3]/90 text-[#0A0B0D] font-semibold px-8 py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(0,217,163,0.3)] hover:shadow-[0_0_30px_rgba(0,217,163,0.4)] text-lg"
           >
             {t('hero.cta')}
@@ -117,6 +130,90 @@ function FeaturesSection() {
   );
 }
 
+function HowItWorksSection() {
+  const t = useTranslations('landing.howItWorks');
+  const steps = [
+    { icon: PhoneCall, title: t('step1.title'), description: t('step1.description') },
+    { icon: FileText, title: t('step2.title'), description: t('step2.description') },
+    { icon: LineChart, title: t('step3.title'), description: t('step3.description') },
+    { icon: GraduationCap, title: t('step4.title'), description: t('step4.description') },
+  ];
+
+  return (
+    <section className="py-24 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="font-grotesk text-4xl font-bold text-[#F2F2F0] mb-4">{t('title')}</h2>
+          <p className="text-[#9CA3AF] text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            return (
+              <div
+                key={step.title}
+                className="relative border border-white/5 bg-[#15171C] rounded-xl p-6 hover:border-[#00D9A3]/20 transition-all duration-200"
+              >
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-11 h-11 rounded-xl bg-[#00D9A3]/10 flex items-center justify-center">
+                    <Icon size={22} className="text-[#00D9A3]" />
+                  </div>
+                  <span className="font-grotesk text-4xl font-bold text-white/5 tabular-nums">
+                    {i + 1}
+                  </span>
+                </div>
+                <h3 className="font-grotesk font-semibold text-[#F2F2F0] mb-2">{step.title}</h3>
+                <p className="text-sm text-[#9CA3AF] leading-relaxed">{step.description}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PricingSummarySection({ locale }: { locale: string }) {
+  const t = useTranslations('landing.pricingSummary');
+  return (
+    <section className="py-24 px-4 bg-[#15171C]/50">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="font-grotesk text-4xl font-bold text-[#F2F2F0] mb-4">{t('title')}</h2>
+          <p className="text-[#9CA3AF] text-lg">{t('subtitle')}</p>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-6 mb-10">
+          <div className="border border-[#00D9A3]/20 bg-[#15171C] rounded-xl p-8 text-center shadow-[0_0_30px_rgba(0,217,163,0.05)]">
+            <p className="text-xs font-medium text-[#00D9A3] uppercase tracking-wide mb-3">{t('monthlyLabel')}</p>
+            <p className="mb-2">
+              <span className="font-grotesk text-5xl font-bold text-[#F2F2F0] tabular-nums">{t('monthlyPrice')}</span>
+              <span className="text-[#9CA3AF]">{t('monthlyPer')}</span>
+            </p>
+            <p className="text-sm text-[#9CA3AF]">{t('monthlyDesc')}</p>
+          </div>
+          <div className="border border-white/5 bg-[#15171C] rounded-xl p-8 text-center">
+            <p className="text-xs font-medium text-[#3D7FFF] uppercase tracking-wide mb-3">{t('mentoringLabel')}</p>
+            <p className="mb-2">
+              <span className="font-grotesk text-5xl font-bold text-[#F2F2F0] tabular-nums">{t('mentoringPrice')}</span>
+              <span className="text-[#9CA3AF]">{t('mentoringPer')}</span>
+            </p>
+            <p className="text-sm text-[#9CA3AF]">{t('mentoringDesc')}</p>
+          </div>
+        </div>
+        <div className="text-center">
+          <Link
+            href={`/${locale}/preus`}
+            className="inline-flex items-center gap-2 text-[#00D9A3] hover:text-[#00D9A3]/80 font-medium transition-colors"
+          >
+            {t('cta')}
+            <ArrowRight size={16} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CtaSection({ locale }: { locale: string }) {
   const t = useTranslations('landing.cta');
   return (
@@ -139,6 +236,37 @@ function CtaSection({ locale }: { locale: string }) {
   );
 }
 
+function Footer({ locale }: { locale: string }) {
+  const t = useTranslations('landing.newsletter');
+  return (
+    <footer className="border-t border-white/5 py-14 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row items-start justify-between gap-10 mb-12">
+          <div className="flex items-center gap-3">
+            <div className="w-7 h-7 rounded-lg bg-[#00D9A3] flex items-center justify-center">
+              <TrendingUp size={14} className="text-[#0A0B0D]" />
+            </div>
+            <span className="font-grotesk font-bold text-[#F2F2F0]">Factor OTC</span>
+          </div>
+          <div className="w-full md:max-w-md">
+            <h3 className="font-grotesk font-semibold text-[#F2F2F0] mb-1">{t('title')}</h3>
+            <p className="text-sm text-[#9CA3AF] mb-4">{t('subtitle')}</p>
+            <NewsletterForm />
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5">
+          <div className="flex flex-wrap gap-6 text-sm text-[#9CA3AF]">
+            <Link href={`/${locale}/avis-legal`} className="hover:text-[#F2F2F0] transition-colors">Avís Legal</Link>
+            <Link href={`/${locale}/termes-i-condicions`} className="hover:text-[#F2F2F0] transition-colors">Termes</Link>
+            <Link href={`/${locale}/politica-privacitat`} className="hover:text-[#F2F2F0] transition-colors">Privadesa</Link>
+          </div>
+          <p className="text-sm text-[#9CA3AF]">© 2024 Factor OTC. Tots els drets reservats.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default async function LandingPage({
   params,
 }: {
@@ -150,24 +278,11 @@ export default async function LandingPage({
     <div className="min-h-screen bg-[#0A0B0D]">
       <PublicNavbar />
       <HeroSection locale={locale} />
+      <HowItWorksSection />
       <FeaturesSection />
+      <PricingSummarySection locale={locale} />
       <CtaSection locale={locale} />
-      <footer className="border-t border-white/5 py-10 px-4">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-lg bg-[#00D9A3] flex items-center justify-center">
-              <TrendingUp size={14} className="text-[#0A0B0D]" />
-            </div>
-            <span className="font-grotesk font-bold text-[#F2F2F0]">Factor OTC</span>
-          </div>
-          <div className="flex flex-wrap gap-6 text-sm text-[#9CA3AF]">
-            <Link href={`/${locale}/avis-legal`} className="hover:text-[#F2F2F0] transition-colors">Avís Legal</Link>
-            <Link href={`/${locale}/termes-i-condicions`} className="hover:text-[#F2F2F0] transition-colors">Termes</Link>
-            <Link href={`/${locale}/politica-privacitat`} className="hover:text-[#F2F2F0] transition-colors">Privadesa</Link>
-          </div>
-          <p className="text-sm text-[#9CA3AF]">© 2024 Factor OTC. Tots els drets reservats.</p>
-        </div>
-      </footer>
+      <Footer locale={locale} />
     </div>
   );
 }

@@ -1,6 +1,32 @@
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import { Users, PieChart, Newspaper, TrendingUp, ArrowRight, Activity } from 'lucide-react';
+import { prisma } from '@/lib/prisma';
+import { Users, PieChart, Newspaper, TrendingUp, ArrowRight, GraduationCap } from 'lucide-react';
+
+async function getAdminMetrics() {
+  try {
+    const weekStart = new Date();
+    weekStart.setHours(0, 0, 0, 0);
+    weekStart.setDate(weekStart.getDate() - ((weekStart.getDay() + 6) % 7)); // dilluns
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekEnd.getDate() + 7);
+
+    const [totalUsers, activeSubscriptions, mentoringThisWeek, pendingArticles] =
+      await Promise.all([
+        prisma.user.count(),
+        prisma.subscription.count({ where: { status: 'ACTIVE' } }),
+        prisma.mentoringSession.count({
+          where: { status: 'SCHEDULED', scheduledAt: { gte: weekStart, lt: weekEnd } },
+        }),
+        prisma.newsArticle.count({ where: { status: 'PENDING' } }),
+      ]);
+
+    return { totalUsers, activeSubscriptions, mentoringThisWeek, pendingArticles };
+  } catch {
+    // Sense connexió a la BD (p. ex. entorn de demo) mostrem zeros en lloc de petar
+    return { totalUsers: 0, activeSubscriptions: 0, mentoringThisWeek: 0, pendingArticles: 0 };
+  }
+}
 
 export default async function AdminPage({
   params,
@@ -9,12 +35,13 @@ export default async function AdminPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations('admin');
+  const metrics = await getAdminMetrics();
 
   const stats = [
-    { label: t('totalUsers'), value: '127', icon: Users, color: '#00D9A3', trend: '+12' },
-    { label: t('activeSubscriptions'), value: '84', icon: TrendingUp, color: '#3D7FFF', trend: '+5' },
-    { label: t('totalRevenue'), value: '8.230€', icon: Activity, color: '#00D9A3', trend: '+8%' },
-    { label: t('pendingArticles'), value: '3', icon: Newspaper, color: '#FF5C5C', trend: null },
+    { label: t('totalUsers'), value: String(metrics.totalUsers), icon: Users, color: '#00D9A3' },
+    { label: t('activeSubscriptions'), value: String(metrics.activeSubscriptions), icon: TrendingUp, color: '#3D7FFF' },
+    { label: t('mentoringThisWeek'), value: String(metrics.mentoringThisWeek), icon: GraduationCap, color: '#00D9A3' },
+    { label: t('pendingArticles'), value: String(metrics.pendingArticles), icon: Newspaper, color: '#FF5C5C' },
   ];
 
   const quickLinks = [
@@ -46,9 +73,6 @@ export default async function AdminPage({
                 </div>
               </div>
               <p className="font-grotesk text-2xl font-bold text-[#F2F2F0] tabular-nums">{stat.value}</p>
-              {stat.trend && (
-                <p className="text-xs text-[#00D9A3] mt-1">{stat.trend} aquest mes</p>
-              )}
             </div>
           );
         })}
