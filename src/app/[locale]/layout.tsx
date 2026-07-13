@@ -1,29 +1,18 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { Space_Grotesk } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { SessionProvider } from 'next-auth/react';
 import { auth } from '@/lib/auth';
-import '@/app/globals.css';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
-});
+import { SetHtmlLang } from '@/components/SetHtmlLang';
 
 export const metadata: Metadata = {
-  title: 'Factor OTC — Plataforma d\'Inversió Professional',
-  description: 'Factor OTC és la plataforma definitiva per a inversors professionals.',
+  title: 'Factor OTC — Mentoria i formació financera',
+  description:
+    "Seguiment de cartera d'inversió en temps real, notícies financeres en català i mentoria personalitzada.",
 };
 
+// El <html> i el <body> només es renderitzen al layout arrel (src/app/layout.tsx);
+// duplicar-los aquí produïa HTML invàlid i errors d'hidratació de React.
 export default async function LocaleLayout({
   children,
   params,
@@ -36,22 +25,14 @@ export default async function LocaleLayout({
   const session = await auth();
 
   return (
-    <html lang={locale} className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans bg-[#0A0B0D] text-[#F2F2F0] antialiased`}>
-        <SessionProvider session={session}>
-          <NextIntlClientProvider messages={messages} locale={locale}>
-            {children}
-          </NextIntlClientProvider>
-        </SessionProvider>
-      </body>
-    </html>
+    <SessionProvider session={session}>
+      <NextIntlClientProvider messages={messages} locale={locale}>
+        <SetHtmlLang locale={locale} />
+        {children}
+      </NextIntlClientProvider>
+    </SessionProvider>
   );
 }
-
 
 export function generateStaticParams() {
   return [{ locale: 'ca' }, { locale: 'es' }];
