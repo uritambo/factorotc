@@ -60,13 +60,14 @@ async function main() {
     create: { userId: user.id },
   });
 
+  const daysAgo = (d: number) => new Date(Date.now() - d * 86400000);
   const positions = [
-    { ticker: 'ITX', companyName: 'Inditex', quantity: 150, avgBuyPrice: 32.4 },
-    { ticker: 'IBE', companyName: 'Iberdrola', quantity: 400, avgBuyPrice: 11.2 },
-    { ticker: 'AAPL', companyName: 'Apple Inc.', quantity: 20, avgBuyPrice: 142.5 },
-    { ticker: 'MC', companyName: 'LVMH Moët Hennessy', quantity: 10, avgBuyPrice: 680.0 },
-    { ticker: 'SAN', companyName: 'Banco Santander', quantity: 800, avgBuyPrice: 3.85 },
-    { ticker: 'MSFT', companyName: 'Microsoft Corp.', quantity: 15, avgBuyPrice: 295.0 },
+    { ticker: 'ITX', companyName: 'Inditex', quantity: 150, avgBuyPrice: 32.4, purchaseDate: daysAgo(300) },
+    { ticker: 'IBE', companyName: 'Iberdrola', quantity: 400, avgBuyPrice: 11.2, purchaseDate: daysAgo(250) },
+    { ticker: 'AAPL', companyName: 'Apple Inc.', quantity: 20, avgBuyPrice: 142.5, purchaseDate: daysAgo(400) },
+    { ticker: 'MC', companyName: 'LVMH Moët Hennessy', quantity: 10, avgBuyPrice: 680.0, purchaseDate: daysAgo(180) },
+    { ticker: 'SAN', companyName: 'Banco Santander', quantity: 800, avgBuyPrice: 3.85, purchaseDate: daysAgo(500) },
+    { ticker: 'MSFT', companyName: 'Microsoft Corp.', quantity: 15, avgBuyPrice: 295.0, purchaseDate: daysAgo(220) },
   ];
 
   await prisma.position.deleteMany({ where: { portfolioId: portfolio.id } });

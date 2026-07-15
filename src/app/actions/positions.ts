@@ -19,6 +19,12 @@ const positionSchema = z.object({
   companyName: z.string().trim().min(1).max(100),
   quantity: z.coerce.number().positive(),
   avgBuyPrice: z.coerce.number().positive(),
+  purchaseDate: z
+    .string()
+    .trim()
+    .optional()
+    .transform((s) => (s ? new Date(s) : null))
+    .refine((d) => d === null || !isNaN(d.getTime()), { message: 'Data no vàlida' }),
 });
 
 export async function addPosition(formData: FormData) {
@@ -35,6 +41,7 @@ export async function addPosition(formData: FormData) {
     companyName: formData.get('companyName'),
     quantity: formData.get('quantity'),
     avgBuyPrice: formData.get('avgBuyPrice'),
+    purchaseDate: formData.get('purchaseDate') ?? undefined,
   });
 
   const portfolio = await prisma.portfolio.upsert({
@@ -44,7 +51,14 @@ export async function addPosition(formData: FormData) {
   });
 
   await prisma.position.create({
-    data: { ...parsed, portfolioId: portfolio.id },
+    data: {
+      ticker: parsed.ticker,
+      companyName: parsed.companyName,
+      quantity: parsed.quantity,
+      avgBuyPrice: parsed.avgBuyPrice,
+      purchaseDate: parsed.purchaseDate,
+      portfolioId: portfolio.id,
+    },
   });
 
   revalidatePath('/', 'layout');

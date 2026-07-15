@@ -79,6 +79,7 @@ model Position {
   companyName  String
   quantity     Float
   avgBuyPrice  Float
+  purchaseDate DateTime?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 }

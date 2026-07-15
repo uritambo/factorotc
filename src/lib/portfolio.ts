@@ -17,6 +17,7 @@ export interface PortfolioPosition {
   avgCost: number;
   currentPrice: number;
   currency: string;
+  purchaseDate: Date | null;
   /** true si el preu ve d'una API de mercat; false si és el preu de compra (sense connexió) */
   isLive: boolean;
 }
@@ -29,7 +30,14 @@ export interface PortfolioTotals {
 }
 
 export async function getUserPositions(userId: string): Promise<PortfolioPosition[]> {
-  let rows: { id: string; ticker: string; companyName: string; quantity: number; avgBuyPrice: number }[];
+  let rows: {
+    id: string;
+    ticker: string;
+    companyName: string;
+    quantity: number;
+    avgBuyPrice: number;
+    purchaseDate: Date | null;
+  }[];
   try {
     rows = await prisma.position.findMany({
       where: { portfolio: { userId } },
@@ -45,6 +53,7 @@ export async function getUserPositions(userId: string): Promise<PortfolioPositio
       avgCost: p.avgCost,
       currentPrice: p.currentPrice,
       currency: p.currency,
+      purchaseDate: null,
       isLive: false,
     }));
   }
@@ -60,6 +69,7 @@ export async function getUserPositions(userId: string): Promise<PortfolioPositio
         avgCost: row.avgBuyPrice,
         currentPrice: quote?.price ?? row.avgBuyPrice,
         currency: quote?.currency ?? 'EUR',
+        purchaseDate: row.purchaseDate,
         isLive: Boolean(quote),
       };
     })
@@ -81,44 +91,59 @@ export async function computeTotals(positions: PortfolioPosition[]): Promise<Por
 
 /**
  * Evolució de la cartera (30 dies) agregant l'històric real de cada posició.
- * Si cap posició té dades de mercat, es retorna la sèrie simulada.
+ * Amb posicions reals SEMPRE construeix una sèrie real (mai dades simulades):
+ *  - si hi ha històric de mercat, l'agrega dia a dia (amb forward-fill);
+ *  - per a posicions sense històric (o abans de la data de compra), es valoren
+ *    al cost, de manera que el valor reflecteix les tinences reals de l'usuari.
+ * Només retorna la sèrie mock quan NO hi ha cap posició (mode demo pur).
  */
 export async function getUserPortfolioHistory(
   positions: PortfolioPosition[]
 ): Promise<PortfolioHistoryPoint[]> {
-  const livePositions = positions.filter((p) => p.isLive);
-  if (livePositions.length === 0) return getMockHistory();
+  if (positions.length === 0) return getMockHistory();
 
   const histories = await Promise.all(
-    livePositions.map(async (pos) => ({
+    positions.map(async (pos) => ({
       pos,
       history: await getPriceHistory(pos.ticker),
       rate: await getEurRate(pos.currency),
     }))
   );
 
-  const usable = histories.filter((h) => h.history && h.history.length > 1);
-  if (usable.length === 0) return getMockHistory();
+  const withHistory = histories.filter((h) => h.history && h.history.length > 1);
 
-  // Conjunt ordenat de dates a partir de la sèrie més llarga
-  const dates = usable
-    .reduce((best, h) => (h.history!.length > best.length ? h.history! : best), usable[0].history!)
-    .map((p) => p.date);
+  // Conjunt de dates: la sèrie de mercat més llarga, o els últims 30 dies si
+  // cap posició té històric (així el gràfic segueix sent real, no mock).
+  let dates: string[];
+  if (withHistory.length > 0) {
+    dates = withHistory
+      .reduce((best, h) => (h.history!.length > best.length ? h.history! : best), withHistory[0].history!)
+      .map((p) => p.date);
+  } else {
+    dates = Array.from({ length: 30 }, (_, i) => {
+      const d = new Date();
+      d.setDate(d.getDate() - (29 - i));
+      return d.toISOString().split('T')[0];
+    });
+  }
 
   return dates.map((date) => {
     let value = 0;
-    for (const { pos, history, rate } of usable) {
-      // Últim tancament conegut fins a la data (forward-fill)
-      let close: number | undefined;
-      for (const point of history!) {
-        if (point.date <= date) close = point.close;
-        else break;
+    for (const { pos, history, rate } of histories) {
+      // La posició encara no s'havia comprat en aquesta data → no compta
+      if (pos.purchaseDate && date < pos.purchaseDate.toISOString().split('T')[0]) {
+        continue;
       }
-      value += pos.quantity * (close ?? pos.avgCost) * rate;
-    }
-    // Les posicions sense històric es valoren al preu actual
-    for (const pos of positions.filter((p) => !usable.some((u) => u.pos.id === p.id))) {
-      value += pos.quantity * pos.currentPrice;
+      // Últim tancament conegut fins a la data (forward-fill); si no hi ha
+      // històric, es fa servir el preu actual (posició valorada a mercat)
+      let close: number | undefined;
+      if (history) {
+        for (const point of history) {
+          if (point.date <= date) close = point.close;
+          else break;
+        }
+      }
+      value += pos.quantity * (close ?? pos.currentPrice) * rate;
     }
     return { date, value: Math.round(value) };
   });

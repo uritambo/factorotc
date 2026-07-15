@@ -47,6 +47,10 @@ export default async function TickerPage({
       minimumFractionDigits: digits,
     }).format(v);
 
+  const daysHeld = position.purchaseDate
+    ? Math.max(0, Math.floor((Date.now() - position.purchaseDate.getTime()) / 86400000))
+    : null;
+
   const details = [
     { label: 'Preu actual', value: formatMoney(position.currentPrice) },
     { label: 'Cost mitjà', value: formatMoney(position.avgCost) },
@@ -54,6 +58,19 @@ export default async function TickerPage({
     { label: 'Valor total', value: formatMoney(value, 0) },
     { label: 'Cost total', value: formatMoney(cost, 0) },
     { label: 'Guany/Pèrdua', value: formatMoney(returnValue, 0) },
+    ...(position.purchaseDate
+      ? [
+          {
+            label: 'Data de compra',
+            value: position.purchaseDate.toLocaleDateString('ca-ES', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric',
+            }),
+          },
+        ]
+      : []),
+    ...(daysHeld !== null ? [{ label: 'Dies en cartera', value: `${daysHeld} dies` }] : []),
   ];
 
   const marketData = [

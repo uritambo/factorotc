@@ -61,6 +61,7 @@ export default async function AdminCarteraUsuariPage({
                 <th className="text-left text-xs font-medium text-[#9CA3AF] px-6 py-4">Empresa</th>
                 <th className="text-right text-xs font-medium text-[#9CA3AF] px-6 py-4">Quantitat</th>
                 <th className="text-right text-xs font-medium text-[#9CA3AF] px-6 py-4">Preu de compra</th>
+                <th className="text-right text-xs font-medium text-[#9CA3AF] px-6 py-4">Data compra</th>
                 <th className="text-right text-xs font-medium text-[#9CA3AF] px-6 py-4">Cost total</th>
                 <th className="px-6 py-4"></th>
               </tr>
@@ -75,6 +76,9 @@ export default async function AdminCarteraUsuariPage({
                   <td className="px-6 py-4 text-right text-sm tabular-nums text-[#F2F2F0]">{position.quantity}</td>
                   <td className="px-6 py-4 text-right text-sm tabular-nums text-[#F2F2F0]">
                     {formatEur(position.avgBuyPrice)}
+                  </td>
+                  <td className="px-6 py-4 text-right text-sm tabular-nums text-[#9CA3AF]">
+                    {position.purchaseDate ? position.purchaseDate.toLocaleDateString('ca-ES') : '—'}
                   </td>
                   <td className="px-6 py-4 text-right text-sm font-semibold tabular-nums text-[#F2F2F0]">
                     {formatEur(position.quantity * position.avgBuyPrice)}

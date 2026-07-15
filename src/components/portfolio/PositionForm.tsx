@@ -35,7 +35,7 @@ export function PositionForm({ targetUserId }: PositionFormProps) {
         Afegir posició
       </h3>
       {targetUserId && <input type="hidden" name="targetUserId" value={targetUserId} />}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
         <div>
           <label className="block text-xs text-[#9CA3AF] mb-1">Ticker</label>
           <input name="ticker" required placeholder="AAPL, ITX.MC…" className={inputClass} />
@@ -51,6 +51,10 @@ export function PositionForm({ targetUserId }: PositionFormProps) {
         <div>
           <label className="block text-xs text-[#9CA3AF] mb-1">Preu de compra</label>
           <input name="avgBuyPrice" type="number" step="any" min="0" required placeholder="150.00" className={inputClass} />
+        </div>
+        <div>
+          <label className="block text-xs text-[#9CA3AF] mb-1">Data de compra</label>
+          <input name="purchaseDate" type="date" className={inputClass} />
         </div>
         <div className="flex items-end">
           <button
