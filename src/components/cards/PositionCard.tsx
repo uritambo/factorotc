@@ -4,10 +4,20 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ChevronRight } from 'lucide-react';
 import { StatBadge } from '@/components/ui/StatBadge';
-import { Position } from '@/lib/mockData';
+
+// Camps mínims que necessita la targeta — vàlid tant per a dades reals (lib/portfolio)
+// com per a dades simulades (lib/mockData)
+interface PositionCardData {
+  ticker: string;
+  name: string;
+  quantity: number;
+  avgCost: number;
+  currentPrice: number;
+  currency: string;
+}
 
 interface PositionCardProps {
-  position: Position;
+  position: PositionCardData;
 }
 
 export function PositionCard({ position }: PositionCardProps) {

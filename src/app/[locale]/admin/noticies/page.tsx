@@ -1,119 +1,134 @@
-'use client';
+import { getTranslations } from 'next-intl/server';
+import { prisma } from '@/lib/prisma';
+import { isNewsImportConfigured } from '@/lib/newsImport';
+import { isTranslationConfigured } from '@/lib/translate';
+import { ImportNewsButton } from '@/components/admin/ImportNewsButton';
+import { CreateArticleForm } from '@/components/admin/CreateArticleForm';
+import { setArticleStatus, deleteArticle } from '@/app/actions/news';
+import { CheckCircle, Clock, Trash2, Languages } from 'lucide-react';
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { getNewsArticles } from '@/lib/mockData';
-import { Newspaper, Plus, CheckCircle, Clock, Trash2, Edit } from 'lucide-react';
+async function getArticles() {
+  try {
+    return await prisma.newsArticle.findMany({ orderBy: { publishedAt: 'desc' }, take: 100 });
+  } catch {
+    return [];
+  }
+}
 
-export default function NoticiesAdminPage() {
-  const t = useTranslations('admin');
-  const articles = getNewsArticles();
-  const [articles2, setArticles2] = useState(
-    articles.map((a, i) => ({ ...a, status: i < 6 ? 'PUBLISHED' : 'PENDING' }))
-  );
+export default async function NoticiesAdminPage() {
+  const t = await getTranslations('admin');
+  const articles = await getArticles();
 
-  const toggleStatus = (id: string) => {
-    setArticles2((prev) =>
-      prev.map((a) =>
-        a.id === id
-          ? { ...a, status: a.status === 'PUBLISHED' ? 'PENDING' : 'PUBLISHED' }
-          : a
-      )
-    );
-  };
+  const published = articles.filter((a) => a.status === 'PUBLISHED');
+  const pending = articles.filter((a) => a.status === 'PENDING');
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="font-grotesk text-3xl font-bold text-[#F2F2F0]">{t('news')}</h1>
-          <p className="text-[#9CA3AF] mt-1">{t('newsList')}</p>
+          <p className="text-[#9CA3AF] mt-1">
+            Importa notícies reals, revisa-les i publica-les perquè les vegin els usuaris
+          </p>
         </div>
-        <button className="flex items-center gap-2 bg-[#00D9A3] hover:bg-[#00D9A3]/90 text-[#0A0B0D] font-semibold px-4 py-2.5 rounded-lg transition-colors">
-          <Plus size={18} />
-          {t('create')}
-        </button>
+        <ImportNewsButton configured={isNewsImportConfigured()} />
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mb-2">
+      {isNewsImportConfigured() && !isTranslationConfigured() && (
+        <div className="flex items-center gap-3 text-xs text-[#9CA3AF] border border-white/5 bg-[#15171C] rounded-lg px-4 py-3">
+          <Languages size={14} className="text-[#3D7FFF] flex-shrink-0" />
+          <span>
+            Les notícies s&apos;importen en l&apos;idioma original. Per traduir-les automàticament al català,
+            afegeix <code className="text-[#00D9A3]">ANTHROPIC_API_KEY</code> a .env (API de Claude).
+          </span>
+        </div>
+      )}
+
+      <div className="grid grid-cols-3 gap-4">
         <div className="border border-white/5 bg-[#15171C] rounded-xl p-4">
           <p className="text-xs text-[#9CA3AF] mb-1">Total articles</p>
-          <p className="font-grotesk text-xl font-bold text-[#F2F2F0]">{articles2.length}</p>
+          <p className="font-grotesk text-xl font-bold text-[#F2F2F0] tabular-nums">{articles.length}</p>
         </div>
         <div className="border border-white/5 bg-[#15171C] rounded-xl p-4">
           <p className="text-xs text-[#9CA3AF] mb-1">Publicats</p>
-          <p className="font-grotesk text-xl font-bold text-[#00D9A3]">{articles2.filter(a => a.status === 'PUBLISHED').length}</p>
+          <p className="font-grotesk text-xl font-bold text-[#00D9A3] tabular-nums">{published.length}</p>
         </div>
         <div className="border border-white/5 bg-[#15171C] rounded-xl p-4">
-          <p className="text-xs text-[#9CA3AF] mb-1">Pendents</p>
-          <p className="font-grotesk text-xl font-bold text-[#FF5C5C]">{articles2.filter(a => a.status === 'PENDING').length}</p>
+          <p className="text-xs text-[#9CA3AF] mb-1">Pendents de revisió</p>
+          <p className="font-grotesk text-xl font-bold text-[#FF5C5C] tabular-nums">{pending.length}</p>
         </div>
       </div>
 
-      <div className="border border-white/5 bg-[#15171C] rounded-xl overflow-hidden">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-white/5">
-              <th className="text-left text-xs font-medium text-[#9CA3AF] px-6 py-4">Títol</th>
-              <th className="text-left text-xs font-medium text-[#9CA3AF] px-6 py-4">Tickers</th>
-              <th className="text-left text-xs font-medium text-[#9CA3AF] px-6 py-4">Estat</th>
-              <th className="text-left text-xs font-medium text-[#9CA3AF] px-6 py-4">Accions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {articles2.map((article) => (
-              <tr key={article.id} className="border-b border-white/5 last:border-0 hover:bg-white/2 transition-colors">
-                <td className="px-6 py-4">
-                  <p className="text-sm font-medium text-[#F2F2F0] line-clamp-1 max-w-md">{article.title}</p>
-                  <p className="text-xs text-[#9CA3AF] mt-0.5">
-                    {new Date(article.publishedAt).toLocaleDateString('ca-ES')}
-                  </p>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex gap-1 flex-wrap">
-                    {article.relatedTickers.slice(0, 3).map((ticker) => (
-                      <span key={ticker} className="text-xs text-[#3D7FFF] bg-[#3D7FFF]/10 px-1.5 py-0.5 rounded">
-                        {ticker}
-                      </span>
-                    ))}
-                  </div>
-                </td>
-                <td className="px-6 py-4">
+      <CreateArticleForm />
+
+      <div className="space-y-3">
+        {articles.length === 0 && (
+          <div className="border border-white/5 bg-[#15171C] rounded-xl p-10 text-center text-sm text-[#9CA3AF]">
+            Encara no hi ha notícies. Importa&apos;n amb el botó de dalt o crea&apos;n una manualment.
+          </div>
+        )}
+        {articles.map((article) => (
+          <div key={article.id} className="border border-white/5 bg-[#15171C] rounded-xl p-5">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <span
-                    className={`inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full ${
+                    className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full ${
                       article.status === 'PUBLISHED'
                         ? 'bg-[#00D9A3]/10 text-[#00D9A3]'
                         : 'bg-[#FF5C5C]/10 text-[#FF5C5C]'
                     }`}
                   >
-                    {article.status === 'PUBLISHED' ? (
-                      <CheckCircle size={10} />
-                    ) : (
-                      <Clock size={10} />
-                    )}
+                    {article.status === 'PUBLISHED' ? <CheckCircle size={10} /> : <Clock size={10} />}
                     {article.status === 'PUBLISHED' ? 'Publicat' : 'Pendent'}
                   </span>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => toggleStatus(article.id)}
-                      className="text-xs font-medium text-[#3D7FFF] hover:text-[#3D7FFF]/80 transition-colors"
-                    >
-                      {article.status === 'PUBLISHED' ? t('unpublish') : t('publish')}
-                    </button>
-                    <button className="text-[#9CA3AF] hover:text-[#F2F2F0] transition-colors">
-                      <Edit size={14} />
-                    </button>
-                    <button className="text-[#9CA3AF] hover:text-[#FF5C5C] transition-colors">
-                      <Trash2 size={14} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  <span className="text-xs text-[#9CA3AF]">{article.source}</span>
+                  <span className="text-xs text-[#9CA3AF] tabular-nums">
+                    {article.publishedAt.toLocaleDateString('ca-ES')}
+                  </span>
+                  {article.relatedTickers.map((ticker) => (
+                    <span key={ticker} className="text-xs text-[#3D7FFF] bg-[#3D7FFF]/10 px-1.5 py-0.5 rounded">
+                      {ticker}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="font-grotesk font-semibold text-[#F2F2F0] leading-snug">{article.title}</h3>
+                <p className="text-sm text-[#9CA3AF] mt-1 line-clamp-2">{article.summary}</p>
+              </div>
+
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <form action={setArticleStatus}>
+                  <input type="hidden" name="articleId" value={article.id} />
+                  <input
+                    type="hidden"
+                    name="status"
+                    value={article.status === 'PUBLISHED' ? 'PENDING' : 'PUBLISHED'}
+                  />
+                  <button
+                    type="submit"
+                    className={`text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors ${
+                      article.status === 'PUBLISHED'
+                        ? 'bg-white/5 text-[#9CA3AF] hover:bg-white/10'
+                        : 'bg-[#00D9A3]/10 text-[#00D9A3] hover:bg-[#00D9A3]/20'
+                    }`}
+                  >
+                    {article.status === 'PUBLISHED' ? t('unpublish') : t('publish')}
+                  </button>
+                </form>
+                <form action={deleteArticle}>
+                  <input type="hidden" name="articleId" value={article.id} />
+                  <button
+                    type="submit"
+                    className="p-2 rounded-lg text-[#9CA3AF] hover:text-[#FF5C5C] hover:bg-[#FF5C5C]/10 transition-colors"
+                    title={t('delete')}
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

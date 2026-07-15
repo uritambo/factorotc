@@ -1,17 +1,10 @@
 import { auth } from '@/lib/auth';
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import {
-  getPortfolioData,
-  getPortfolioHistory,
-  getNewsArticles,
-  getTotalPortfolioValue,
-  getTotalReturnPct,
-} from '@/lib/mockData';
+import { getUserPositions, computeTotals, getUserPortfolioHistory } from '@/lib/portfolio';
+import { getPublishedNews } from '@/lib/news';
 import { PortfolioChart } from '@/components/charts/PortfolioChart';
 import { StatBadge } from '@/components/ui/StatBadge';
-import { NewsCard } from '@/components/cards/NewsCard';
 import { TrendingUp, TrendingDown, PieChart, ArrowRight } from 'lucide-react';
 
 export default async function DashboardPage({
@@ -23,13 +16,23 @@ export default async function DashboardPage({
   const session = await auth();
   const t = await getTranslations('dashboard');
 
-  const portfolioData = getPortfolioData();
-  const portfolioHistory = getPortfolioHistory();
-  const newsArticles = getNewsArticles().slice(0, 3);
-  const totalValue = getTotalPortfolioValue();
-  const totalReturnPct = getTotalReturnPct();
-  const todayChange = portfolioHistory[portfolioHistory.length - 1].value - portfolioHistory[portfolioHistory.length - 2].value;
-  const todayChangePct = (todayChange / portfolioHistory[portfolioHistory.length - 2].value) * 100;
+  const userId = (session?.user as { id: string } | undefined)?.id ?? '';
+  const portfolioData = await getUserPositions(userId);
+  const [totals, portfolioHistory, allNews] = await Promise.all([
+    computeTotals(portfolioData),
+    getUserPortfolioHistory(portfolioData),
+    getPublishedNews(),
+  ]);
+  const newsArticles = allNews.slice(0, 3);
+  const totalValue = totals.totalValueEur;
+  const totalReturnPct = totals.pnlPct;
+  const hasHistory = portfolioHistory.length > 1;
+  const todayChange = hasHistory
+    ? portfolioHistory[portfolioHistory.length - 1].value - portfolioHistory[portfolioHistory.length - 2].value
+    : 0;
+  const todayChangePct = hasHistory && portfolioHistory[portfolioHistory.length - 2].value > 0
+    ? (todayChange / portfolioHistory[portfolioHistory.length - 2].value) * 100
+    : 0;
 
   const userName = session?.user?.name?.split(' ')[0] || 'Inversor';
 
@@ -99,7 +102,11 @@ export default async function DashboardPage({
           <h2 className="font-grotesk text-lg font-semibold text-[#F2F2F0]">{t('performance')}</h2>
           <StatBadge value={totalReturnPct} size="sm" />
         </div>
-        <PortfolioChart data={portfolioHistory} />
+        {hasHistory ? (
+          <PortfolioChart data={portfolioHistory} />
+        ) : (
+          <p className="text-sm text-[#9CA3AF] py-10 text-center">{t('noData')}</p>
+        )}
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
